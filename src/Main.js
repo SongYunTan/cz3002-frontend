@@ -7,8 +7,8 @@ import Signup from './pages/Signup';
 const Main = () => {
   return (
     <Routes> {/* The Switch decides which component to show based on the current URL.*/}
-      <Route exact path='/login' component={Login}></Route>
-      <Route exact path='/signup' component={Signup}></Route>
+      <Route exact path='/login' element={<Login/>}></Route>
+      <Route exact path='/signup' element={<Signup/>}></Route>
     </Routes>
   );
 }
