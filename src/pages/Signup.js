@@ -24,7 +24,7 @@ function TextInput({ type, label }) {
 const Signup = () => {
   const logo = "logo.png"
   return (
-    <Container id="login">
+    <Container id="signup">
       <Col>
         <img className="image" src={logo}/>
         <form>

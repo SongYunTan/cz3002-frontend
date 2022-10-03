@@ -11,10 +11,10 @@
 }
 
 /* ------------------------------------------------------------------ */
-/* b. Login Styles
+/* b. Login and Signup Styles
 /* ------------------------------------------------------------------ */
 
-#login { 
+#login, #signup{ 
 	background: var(--background); 
 	height: 100vh;
 	display: flex;
@@ -23,18 +23,18 @@
 	color: var(--text);
 }
 
-#login img {
+#login img, #signup img {
 	height: 80px;
 	margin-bottom: 20px;
 }
 
-#login .input-container {
+#login .input-container, #signup .input-container {
   position: relative;
   display: flex;
   flex-direction: column;
 }
 
-#login .input-container label {
+#login .input-container label, #signup .input-container label {
   position: absolute;
   pointer-events: none;
   transform: translate(0, 18px) scale(1);
@@ -46,16 +46,16 @@
   left: 12px;
 }
 
-#login .input-container:focus-within label {
+#login .input-container:focus-within label, #signup .input-container:focus-within label {
   transform: translate(0, 8px) scale(0.75);
   color: var(--primary);
 }
 
-#login .input-container .filled {
+#login .input-container .filled, #signup .input-container .filled {
   transform: translate(0, 8px) scale(0.75);
 }
 
-#login input {
+#login input, #signup input {
 	background-color: var(--text);
 	border-radius: 10px;
 	height: 30px;
@@ -65,7 +65,7 @@
 	/* border: 1px; */
 }
 
-#login .button {
+#login .button, #signup .button {
 	color: var(--text);
 	background-color: var(--primary);
 	height: 38px;
