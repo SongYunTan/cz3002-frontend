@@ -1,0 +1,58 @@
+/* ------------------------------------------------------------------ */
+/* a. General Styles
+      colours used: D4F0F7 (light blue), FFDCF4 (light pink), B8CFEC (purple-blue) 
+      222222 (dark grey), 000524 (dark blue), 6495ED (cornflower blue)
+/* ------------------------------------------------------------------ */
+
+:root {
+	--background: #1A161F;
+	--text: #EBF1FD;
+	--primary: #508FF8;
+}
+
+/* ------------------------------------------------------------------ */
+/* b. Login Styles
+/* ------------------------------------------------------------------ */
+
+#login { 
+	background: var(--background); 
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--text);
+}
+
+#login img {
+	height: 80px;
+	margin-bottom: 20px;
+}
+
+#login input {
+	background-color: var(--text);
+	border-radius: 10px;
+	height: 30px;
+	width: 300px;
+	margin: 5px;
+	/* border: 1px; */
+}
+
+#login .button {
+	color: var(--text);
+	background-color: var(--primary);
+	height: 35px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+#login .signup-link {
+	margin-top: 60px;
+	text-align: left;
+}
+
+#login .signup-link a{
+	color: var(--text);
+	font-weight: bold;
+	font-size: 18px;
+}
