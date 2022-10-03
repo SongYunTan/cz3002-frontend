@@ -7,7 +7,7 @@ import Signup from './pages/Signup';
 const Navbar = () => {
   return (
     <Routes> {/* The Switch decides which component to show based on the current URL.*/}
-      <Route exact path='/login' element={<Login/>}></Route>
+      <Route exact path='/' element={<Login/>}></Route>
       <Route exact path='/signup' element={<Signup/>}></Route>
     </Routes>
   );
