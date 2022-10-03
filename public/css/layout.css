@@ -86,3 +86,35 @@
 	font-weight: bold;
 	font-size: 16px;
 }
+
+
+/* ------------------------------------------------------------------ */
+/* b. Navbar Styles
+/* ------------------------------------------------------------------ */
+
+#navbar{
+	background: var(--background); 
+	width: 25%;
+	height: 100vh;
+	color: var(--text);
+	
+}
+
+#navbar img {
+	height: 70px;
+	padding-top: 40px;
+	margin-bottom: 40px;
+	display: flex;
+	margin-left: 25px;
+}
+
+#navbar a{
+	padding: 10px;
+	color: var(--text);
+	font-weight: bold;
+	font-size: 16px;
+	font-style: normal;
+	text-decoration: none;
+	display: flex;
+	margin-left: 25px;
+}

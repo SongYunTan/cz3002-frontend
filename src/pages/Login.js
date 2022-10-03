@@ -35,7 +35,9 @@ const Login = () => {
             <TextInput type="password" label="Password"/>
           </Row>
           <br></br>
-          <input type="submit" value="LOG IN" className="button"/>
+          <Link to="/dashboard">
+            <input type="submit" value="LOG IN" className="button"/>
+          </Link>
         </form>
     
         <p className="signup-link">

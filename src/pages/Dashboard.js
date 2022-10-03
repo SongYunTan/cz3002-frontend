@@ -1,7 +1,9 @@
+import Navbar from "../Navbar";
+
 function Dashboard() {
   return (
     <div id="dashboard">
-			This is the dashboard.
+			<Navbar/>
     </div>
   );
 }
