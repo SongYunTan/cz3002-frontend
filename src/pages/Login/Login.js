@@ -12,6 +12,12 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState('');
 
+  let navigate = useNavigate(); 
+  const routeChange = () =>{ 
+    let path = `/Swipe`; 
+    navigate(path);
+  }
+
   function handleUsernameChange(e) {
     setUsername(e.target.value);
   }
@@ -40,9 +46,7 @@ const Login = () => {
       setErr(err.message);
     } finally {
       setIsLoading(false);
-      let navigate = useNavigate(); 
-      let path = `/Swipe`; 
-      navigate(path);
+      routeChange();
     }
   };
 
