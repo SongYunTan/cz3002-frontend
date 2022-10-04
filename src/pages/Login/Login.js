@@ -25,7 +25,7 @@ const Login = () => {
     try {
       const {data} = await axios.post(
         'http://127.0.0.1:5000/login',
-        {username: {username}, password: {password}},
+        {username, password},
         {
           headers: {
             'Content-Type': 'application/json',
@@ -47,7 +47,9 @@ const Login = () => {
     <div className="loginPage">
         <img alt="tindflix-logo" className="loginPage-imagelogo" src={logo}/>
         <form className="loginPage-form">
-
+          <div className="loginPage-failedLogin">
+            {err ? <p>The username and password is incorrect. Please try again.</p> :<p></p>}
+          </div>
           <div className="loginPage-userInput">
             <input placeholder='Username' className = "loginPage-inputs" type='text' value={username} onChange={handleUsernameChange} />
           </div>
