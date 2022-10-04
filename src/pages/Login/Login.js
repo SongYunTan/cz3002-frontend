@@ -11,6 +11,11 @@ function TextInput({ label }) {
     setValue(e.target.value);
   }
 
+  function handleButtonClicked() {
+    var searchQuery = this.state.searchQuery;
+    window.location.href = "https://youtube.com/results?search_query" + searchQuery;
+  }
+
   return (
     <div className="loginPage-userInput">
       <input placeholder={label==='Password'?'Password':'Username/Email'} className = "loginPage-inputs" type={label==='Password'?PasswordInputType:'text'} value={value} onChange={handleChange} />
