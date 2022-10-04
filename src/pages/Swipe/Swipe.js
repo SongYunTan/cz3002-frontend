@@ -17,10 +17,10 @@ const Swipe = () => {
       console.log(err.message);
     }).then((response)=> {
       console.log(JSON.stringify(response.data, null, 4));
-      setMovie(data);
+      setMovie(response.data);
     });
   };
-  
+
   useEffect(() => {
     getData();
   }, []);
