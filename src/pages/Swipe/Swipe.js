@@ -34,6 +34,25 @@ const Swipe = () => {
     getData();
   }, []);
 
+
+  const handleInterestClick = async (e) => {
+    await axios.post(
+      'http://127.0.0.1:5000/indicate_interest',
+      {username, groupName: "test", title: movie.random_title, interest:e.target.value},
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+      },
+    ).catch((err) => {
+      console.log(err.message);
+    }).then((response)=> {
+      console.log(JSON.stringify(response.data, null, 4));
+      getData();
+    });
+  };
+
   return (
     <div className='swipe'>
       <Navbar />
@@ -42,8 +61,8 @@ const Swipe = () => {
         <div className="groupSwipe-content">
           <img className='moviePoster' alt='movie poster' src={movie.image_url}></img>
           <div className='buttons'>
-            <input className="noButton" type="button" value="Nope"/>
-            <input className="yesButton" type="button" value="Yesss!!"/>
+            <input className="noButton" type="button" value="no" onClick={handleInterestClick}/>
+            <input className="yesButton" type="button" value="yes" onClick={handleInterestClick}/>
           </div>
           <a href="/" className='skipMovie'>Skip</a>
           <div className='reviewSection'>
