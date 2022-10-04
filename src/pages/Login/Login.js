@@ -47,8 +47,6 @@ const Login = () => {
       setIsLoading(false);
       routeChange();
     });
-
-
   };
 
   return (

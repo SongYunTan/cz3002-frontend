@@ -1,18 +1,37 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import GroupNavbar from '../../components/GroupNavbar';
 import Navbar from '../../components/Navbar';
 import {Reviewlist} from './Reviewlist';
 import { Rating } from 'react-simple-star-rating'
 import './Swipe.css';
+import axios from 'axios';
 
 const Swipe = () => {
+  const [movie, setMovie] = useState([]);
+
+  const getData = async () => {
+
+    await axios.get(
+      'http://127.0.0.1:5000/get_title'
+    ).catch((err) => {
+      console.log(err.message);
+    }).then((response)=> {
+      console.log(JSON.stringify(response.data, null, 4));
+      setMovie(data);
+    });
+  };
+  
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <div className='swipe'>
       <Navbar />
       <div className='groupSwipe'>
         <div className='groupNav-bar'><GroupNavbar /></div>
         <div className="groupSwipe-content">
-          <img className='moviePoster' alt='movie poster' src='images/movie.jpg'></img>
+          <img className='moviePoster' alt='movie poster' src={movie.image_url}></img>
           <div className='buttons'>
             <input className="noButton" type="button" value="Nope"/>
             <input className="yesButton" type="button" value="Yesss!!"/>
