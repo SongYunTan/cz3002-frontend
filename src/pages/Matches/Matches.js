@@ -14,7 +14,7 @@ const Matches = () => {
           {Matcheslist.map((val, key) =>{
               return (
                 <div className="movie">
-                  <img className='moviePoster' alt='movie poster' src={'images/' + val.image}></img>
+                  <img className='matchesMoviePoster' alt='movie poster' src={'images/' + val.image}></img>
                   <p>{val.title}</p>
                 </div>
               )
