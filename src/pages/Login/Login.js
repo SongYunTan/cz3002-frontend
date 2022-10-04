@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import usePasswordToggle from '../../components/usePasswordToggle';
 import './Login.css';
 import axios from 'axios';
@@ -40,6 +40,9 @@ const Login = () => {
       setErr(err.message);
     } finally {
       setIsLoading(false);
+      let navigate = useNavigate(); 
+      let path = `/Swipe`; 
+      navigate(path);
     }
   };
 
@@ -63,11 +66,11 @@ const Login = () => {
 
           <br></br>
           <div className="LoginPage-loginButton">
-            <Link to="/Swipe">
-              <button type="submit" className="loginPage-login" onClick={handleButtonClick}>
-                LOG IN
-              </button>
-            </Link>
+            
+            <button type="submit" className="loginPage-login" onClick={handleButtonClick}>
+              LOG IN
+            </button>
+            
           </div>
         </form>
 
