@@ -2,17 +2,26 @@ import React, {useEffect, useState} from 'react'
 import GroupNavbar from '../../components/GroupNavbar';
 import Navbar from '../../components/Navbar';
 import {Reviewlist} from './Reviewlist';
-import { Rating } from 'react-simple-star-rating'
+import { Rating } from 'react-simple-star-rating';
+import { useGlobalState } from '../../state';
 import './Swipe.css';
 import axios from 'axios';
 
 const Swipe = () => {
   const [movie, setMovie] = useState([]);
+  const [username] = useGlobalState("globalUsername"); 
 
   const getData = async () => {
 
-    await axios.get(
-      'http://127.0.0.1:5000/get_title'
+    await axios.post(
+      'http://127.0.0.1:5000/get_title',
+      {username, "test"},
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+      },
     ).catch((err) => {
       console.log(err.message);
     }).then((response)=> {

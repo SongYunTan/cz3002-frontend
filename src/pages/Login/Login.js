@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import usePasswordToggle from '../../components/usePasswordToggle';
+import { setGlobalState } from '../../state';
 import './Login.css';
 import axios from 'axios';
 
@@ -45,6 +46,7 @@ const Login = () => {
     }).then((response)=> {
       console.log(JSON.stringify(response.data, null, 4));
       setIsLoading(false);
+      setGlobalState("globalUsername", username);
       routeChange();
     });
   };
