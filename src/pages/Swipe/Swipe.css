@@ -1,0 +1,232 @@
+.swipe{
+    height: 100%;
+    width: 100%;
+    display:flex; 
+    flex-direction:row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.groupSwipe{
+    height: 100%;
+    width: 100%;
+    background:#1e272e;
+    outline: 1px solid #808e9b;
+    display:flex; 
+    flex-direction:column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.groupNav-bar{
+    width: 100%;
+    height: 90px;
+}
+
+.groupSwipe-content{
+    height: 100%;
+    width: 100%;
+    outline: 1px solid #808e9b;
+    display:flex; 
+    flex-direction:column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.moviePoster{
+    height: 300px;
+    width: 800px;
+    border-radius: 30px;
+    margin-top: 20px;
+}
+
+.buttons{
+    width: 800px;
+    height: 50px;
+    margin-top: 20px;
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.noButton{
+    width: 300px;
+    height: 100%;
+    border-radius: 10px;
+    background: #ff3838;
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    color: white;
+    border: none;
+}
+
+.noButton:hover{
+    background: #ff4d4d;
+    color: #2f3542;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+    transform: scale(1.08);
+}
+
+.yesButton{
+    width: 300px;
+    height: 100%;
+    border-radius: 10px;
+    background: #20bf6b;
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    color: white;
+    border: none;  
+}
+
+.yesButton:hover{
+    background:#26de81;
+    color: #2f3542;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+    transform: scale(1.08);
+}
+
+.skipMovie{
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.reviewSection{
+    width: 800px;
+    height: 175px;
+    margin-top: 10px;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    list-style: none;
+}
+
+.reviewSection #reviewPart{
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.reviews{
+    padding-left: 0px;
+    margin-top: 5px;
+    overflow-y: scroll;
+    display:flex;
+    flex-direction:column;
+    justify-content: flex-start;
+    align-items: left;
+    list-style: none;
+}
+
+.reviews::-webkit-scrollbar {
+    display: none;
+}
+
+.reviews {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.reviews .reviewRow{
+    height: auto;
+    width: 100%;
+    display:flex;
+    flex-direction:row;
+    justify-content: flex-start;
+    border-top: 1px solid #808e9b;
+}
+
+.reviews .userInfo{
+    margin:10px;
+    display:flex;
+    flex-direction:column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.reviews #profileImg{
+    width: 40px; 
+    height: 40px; 
+    overflow: hidden; 
+    border-radius: 50%;
+}
+
+.reviews #username{
+    color: white;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.reviews .userReview{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: left;
+    margin: 15px;
+}
+
+.reviews #review{
+    color: white;
+    margin-top: 5px;  
+}
+
+@media screen and (max-width: 960px){
+    .swipe{
+        flex-direction:column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .groupNav-bar{
+        height: 10vh;
+        width: 100vw;
+        outline: 1px solid #808e9b;
+    }
+
+    .groupSwipe-content{
+        outline: none;
+    }
+
+    .groupSwipe{
+        height: 90vh;
+        outline: 0px;
+    }
+
+    .moviePoster{
+        height: 30vh;
+        width: 70%;
+    }
+
+    .buttons{
+        width: 70%;
+        height: 100%;
+        display:flex; 
+        flex-direction:row;
+        justify-content:space-around;
+        align-items: center;
+    }
+
+    .noButton{
+        width: 40%;
+        height: 80%;
+    }
+
+    .yesButton{
+        width: 40%;
+        height: 80%;
+    }
+
+    .reviewSection{
+        width:90%;
+        height: 200px;
+    }
+}

@@ -1,0 +1,663 @@
+.createGroup-page{
+    height: 100%;
+    width: 100%;
+    background: #1e272e;
+    font-weight: bold;
+    display:flex; 
+    flex-direction:row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.createGroup-container{
+    height: 100%;
+    width: 100%;
+    display:flex; 
+    flex-direction:column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.createGroup-navbar{
+    height: 90px;
+    width: 100%;
+    outline: 1px solid #808e9b;
+    display:flex; 
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.createGroup-navbar .createGroup-backicon{
+    font-size: 90px
+}
+
+.createGroup-backbtn{
+    width: 200px;
+    height: 100%;
+    color:white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background: transparent;
+    align-items: center;
+    border: none;
+}
+
+.createGroup-backbtn:hover{
+    background-color: #d2dae2;
+    color: #1e272e;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+    transform: scale(1.08);
+}
+
+.createGroup-header{
+    margin-left: 10px;
+    font-size: 40px;
+    color: white;
+}
+
+.createGroup-details{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    outline: 1px solid #808e9b;
+}
+
+.createGroup-groupname{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: left;
+    color: white;
+}
+
+.createGroup-backbtn-mobile{
+    display: none;
+}
+
+.createGroup-groupname-heading{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+}
+
+.createGroup-grouptitle{
+    margin-left: 80px;
+}
+
+.createGroup-typedName{
+    margin-left: 20px;
+}
+
+.createGroup-groupname .editgnicon{
+    font-size: 40px
+}
+
+.createGroup-editbtn{
+    width: 200px;
+    height: 90px;
+    color:white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background: transparent;
+    align-items: center;
+    border: none;
+}
+
+.createGroup-editbtn:hover{
+    color: #d2dae2;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+    transform: scale(1.08);
+}
+
+.popup-enterGname{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: left;
+    width: 90%
+}
+
+.groupName-title{
+    position: relative;
+    left: 16px;
+    top: -30px;
+    font-size: 40px;
+    color: #1e272e;
+}
+
+.groupname_inputbox{
+    position: relative;
+    left: 16px;
+    bottom: 16px;
+    font-size: 40px;
+    width: 70%;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background: #1e272e;
+}
+
+.groupName-submitButton .groupName-submit{
+    font-size: 60px;
+}  
+
+.groupName-submitButton{
+    margin-left: 50px;
+    color:white;
+    background: transparent;
+    align-items: center;
+    border: none;
+}
+
+.groupName-submitButton:hover{
+    color:#44bd32;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+    transform: scale(1.08);
+}
+
+.createGroup-member-title{
+    color: white;
+    width: auto;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: right;
+}
+
+.createGroup-member-list{
+    width: 700px;
+    height: 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 80px;
+}
+
+.createGroup-member-titleheader{
+    margin-left: 80px;
+}
+
+.createGroup-memberImage-list{
+    height: 100%;
+    max-width: 75%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    list-style: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.createGroup-memberImage-list::-webkit-scrollbar{
+    display: none;
+}
+
+.createGroup-memberInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-right: 20px;
+    border: none;
+    background: transparent;
+}
+
+.createGroup-memberInfo #createGroup-memberImg{
+    height: 110px;
+    width: 110px;
+    overflow:hidden;
+    border-radius: 50%;
+}
+
+.createGroup-memberInfo #createGroup-memberusername{
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top:10px;
+}
+
+.createGroup-member-addMember{
+    height: 100%;
+    width: auto;
+    border: none;
+    background: transparent;
+    color:#636e72;
+}
+
+.createGroup-member-addMember .createGroup-addMember-btn{
+    font-size: 150px;
+}
+
+.createGroup-addMember-btn:hover{
+    color: #d2dae2;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+    transform: scale(1.08);
+}
+
+.popup-AddMember{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+}
+
+.createGroup-searchAllUser{
+    font-size: 40px;
+    width: 70%;
+    margin-bottom: 20px;
+    margin-left: 60px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background: #1e272e;
+}
+
+.createGroup-alluser-list{
+    width: 90%;
+    height: 300px;
+    overflow-y: auto;
+}
+
+.createGroup-alluser-list::-webkit-scrollbar{
+    display: none;
+}
+
+.createGroup-userInfo{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border: none;
+    background: transparent;
+    padding: 10px;
+    border-bottom: 1px solid gray;
+}
+
+.createGroup-userInfo #createGroup-userImg{
+    height: 70px;
+    width: 70px;
+    overflow:hidden;
+    border-radius: 50%;
+}
+
+.createGroup-userInfo #createGroup-username{
+    color: white;
+    margin-left: 10px;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.createGroup-userInfo:hover{
+    margin-left: 20px;
+    background: #1e272e;
+    transform: scale(1.08);
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+}
+
+.createGroup-genre-input{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+}
+
+.createGroup-genre-title{
+    color: white;
+    margin-left: 80px;
+}
+
+.createGroup-genre-input .editgenreicon{
+    font-size: 40px
+}
+
+.createGroup-genre-editbtn{
+    width: 200px;
+    height: 90px;
+    color:white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background: transparent;
+    align-items: center;
+    border: none;
+}
+
+.createGroup-genre-editbtn:hover{
+    color: #d2dae2;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+    transform: scale(1.08);
+}
+
+.createGroup-genre-selectingGenre{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: right;
+}
+
+.createGroup-addGenre{
+    width: 20%;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    background: #4b6584;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.createGroup-addGenre:hover{
+    transform: scale(1.08);
+    font-size: 15px;
+    background: #778ca3;
+    font-size: 90%;
+    cursor: pointer;
+}
+
+.createGroup-genre-list{
+    list-style: none;
+    width: 80%;
+    height: 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow-y: auto;
+}
+
+.createGroup-genre-list::-webkit-scrollbar{
+    display: none;
+}
+
+.createGroup-genre-row{
+    width: 20%;
+    height: 40px;
+    padding: 10px;
+}
+
+.createGroup-genreSelectName{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    border: none;
+    background: #1e272e;
+    color: white;
+    transition: 0.1s ease-in-out;
+}
+
+.createGroup-genreSelectName:hover{
+    transform: scale(1.08);
+    color: #a5b1c2;
+    font-size: 100%;
+    cursor: pointer;
+}
+
+.genreSelect-active{
+    background: #dcdde1;
+    transform: scale(1.10);
+    color: #2f3640;
+    font-size: 100%;
+    font-weight: bold;
+}
+
+.genreSelect-active:hover{
+    color: #353b48;
+    cursor: pointer;
+}
+
+.createGroup-selectedGenre{
+    width: 55%;
+    height: 150px;
+    margin-left: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: right;
+    flex-wrap: wrap;
+    overflow-y: auto;
+}
+
+.createGroup-selectedGenre::-webkit-scrollbar{
+    display: none;
+}
+
+.createGroup-genreSelected-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.genreSelected-inactive{
+    display: none;
+}
+
+.genreSelected-cancel-inactive{
+    display: none;
+}
+
+.genreSelected-active{
+    height: 40px;
+    width: 150px;
+    border-radius: 10px;
+    border: none;
+    background: #4b6584;
+    color: white;
+    font-weight: bold;
+}
+
+.genreSelected-cancel-active{
+    height: 50px;
+    border: none;
+    background: transparent;
+    margin-left: -15%;
+    display: flex;
+    align-items: top;
+}
+
+.genreSelected-cancel-active .genreSelected-cancelActive{
+    color: #eb3b5a;
+}
+
+.genreSelected-cancelActive:hover{
+    color: #c23616;
+    cursor: pointer;
+}
+
+.createGroup-buttons{
+    width: 90%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: right;
+}
+
+.createGroup-cancelbtn{
+    height: 40px;
+    width: 150px;
+    background: #eb3b5a;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    border: 0px;
+    color: white;
+}
+
+.createGroup-cancelbtn:hover{
+    background: #fc5c65;   
+    color: #1e272e;
+    transform: scale(1.08);
+    cursor: pointer;
+}
+
+.createGroup-createbtn{
+    height: 40px;
+    width: 150px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 40px;
+    background: #20bf6b;
+    border-radius: 10px;
+    border: 0px;
+    color: white;
+}
+
+.createGroup-createbtn:hover{
+    background: #26de81;   
+    color: #1e272e;
+    transform: scale(1.08);
+    cursor: pointer;
+}
+
+@media screen and (max-width: 960px){
+    .createGroup-page{
+        margin: 0;
+        padding: 0;
+        display:flex; 
+        flex-direction:column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .createGroup-container{
+        height: 90vh;
+    }
+
+    .createGroup-navbar{
+        display: none;
+    }
+
+    .createGroup-backbtn-mobile{
+        width: 100%;
+        height: 100px;
+        color:white;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        background: transparent;
+        align-items: center;
+        border: none;
+    }
+
+    .createGroup-backbtn-mobile .createGroup-backicon-mobile{
+        font-size: 60px;
+    }
+
+    .createGroup-backbtn-mobile:hover{
+        color: #d2dae2;
+        transition: all 0.2s ease-out;
+        cursor: pointer;
+        transform: scale(1.08);
+        margin-left: 20px;
+    }
+
+    .createGroup-groupname-heading{
+        display: flex;
+        flex-direction: row;
+        justify-content:space-between;
+        align-items: right;
+    }
+
+    .createGroup-member-title{
+        padding-top: 40px;
+        width: 100%;
+        height: 200px;
+    }
+
+    .createGroup-member-list{
+        width: 80%;
+    }
+    
+    .createGroup-memberImage-list{
+        max-width: 75%;
+    }
+
+    .createGroup-member-addMember{
+        height: 100%;
+        width: 25%;
+    }
+
+    .createGroup-member-addMember .createGroup-addMember-btn{
+        font-size: 100px;
+    }
+    
+    .createGroup-memberInfo #createGroup-memberImg{
+        height: 80px;
+        width: 80px;
+    }
+
+    .createGroup-searchAllUser{
+        font-size: 30px;
+        margin-bottom: 20px;
+        margin-left: 50px;
+    }
+
+    .createGroup-genre-list{
+        list-style: none;
+        width: 90%;
+        height: 150px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+        overflow-y: auto;
+    }
+
+    .createGroup-selectedGenre{
+        width: 80%;
+        height: 100px;
+    }
+
+    .createGroup-addGenre{
+        font-size: 10px;
+    }
+
+    .createGroup-genreSelectName{
+        font-size: 10px;
+    }
+    
+    .createGroup-genreSelectName:hover{
+        transform: scale(1.08);
+        font-size: 75%;
+    }
+
+    .genreSelect-active{
+        font-size: 80%;
+    }
+
+    .createGroup-buttons{
+        height: 100px;
+        margin-left: 80px;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+}
