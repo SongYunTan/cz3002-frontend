@@ -27,10 +27,11 @@ const Login = () => {
   }
 
   const handleButtonClick = async (e) => {
+    setErr('')
     e.preventDefault()
     setIsLoading(true);
  
-    const {data} = await axios.post(
+    await axios.post(
       'http://127.0.0.1:5000/login',
       {username, password},
       {
@@ -41,8 +42,8 @@ const Login = () => {
       },
     ).catch((err) => {
       setErr(err.message);
-    }).then(()=> {
-      console.log(JSON.stringify(data, null, 4));
+    }).then((response)=> {
+      console.log(JSON.stringify(response.data, null, 4));
       setIsLoading(false);
       routeChange();
     });
