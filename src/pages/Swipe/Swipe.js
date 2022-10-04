@@ -15,7 +15,7 @@ const Swipe = () => {
 
     await axios.post(
       'http://127.0.0.1:5000/get_title',
-      {username, "test"},
+      {username, groupName: "test"},
       {
         headers: {
           'Content-Type': 'application/json',
