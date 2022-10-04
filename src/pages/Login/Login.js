@@ -26,28 +26,28 @@ const Login = () => {
     setPassword(e.target.value);
   }
 
-  const handleButtonClick = async () => {
+  const handleButtonClick = async (e) => {
+    e.preventDefault()
     setIsLoading(true);
-    try {
-      const {data} = await axios.post(
-        'http://127.0.0.1:5000/login',
-        {username, password},
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
+ 
+    const {data} = await axios.post(
+      'http://127.0.0.1:5000/login',
+      {username, password},
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
-      );
-
-      console.log(JSON.stringify(data, null, 4));
-
-    } catch (err) {
+      },
+    ).catch((err) => {
       setErr(err.message);
-    } finally {
+    }).then(()=> {
+      console.log(JSON.stringify(data, null, 4));
       setIsLoading(false);
       routeChange();
-    }
+    });
+
+
   };
 
   return (
@@ -55,7 +55,7 @@ const Login = () => {
         <img alt="tindflix-logo" className="loginPage-imagelogo" src={logo}/>
         <form className="loginPage-form">
           <div className="loginPage-failedLogin">
-            {err ? <p>The username and password is incorrect. Please try again.</p> :<p></p>}
+            {err==='' ? <p></p> : <p>The username and password is incorrect. Please try again.</p>}
           </div>
           <div className="loginPage-userInput">
             <input placeholder='Username' className = "loginPage-inputs" type='text' value={username} onChange={handleUsernameChange} />
