@@ -58,13 +58,13 @@
 .signupPage #failedSignup {
     font-size: 15px;
     color: red;
-    margin-bottom: -30px;
+    /* margin-bottom: -30px; */
 }
 
 .signupPage #successSignup {
     font-size: 15px;
     color: green;
-    margin-bottom: -30px;
+    /* margin-bottom: -30px; */
 }
 
 .signupPage #pwSame {
