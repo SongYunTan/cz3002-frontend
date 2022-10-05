@@ -16,7 +16,7 @@ function GroupNavbar() {
                 </Link>
                 </li>
                 <li className='groupnav-item'>
-                <Link to='/' className='groupnav-links' id={window.location.pathname === '/match' ? "active": ""}>
+                <Link to='/Matches' className='groupnav-links' id={window.location.pathname === '/match' ? "active": ""}>
                 <div id='title'>Matches</div>
                 </Link>
                 </li>
