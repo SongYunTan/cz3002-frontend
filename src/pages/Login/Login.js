@@ -53,30 +53,26 @@ const Login = () => {
 
   return (
     <div className="loginPage">
-        <img alt="tindflix-logo" className="loginPage-imagelogo" src={logo}/>
+        <img alt="tindflix-logo" id="imagelogo" src={logo}/>
         <form className="loginPage-form">
-          <div className="loginPage-failedLogin">
+          <div id="failedLogin">
             {err==='' ? <p></p> : <p>The username and password is incorrect. Please try again.</p>}
           </div>
-          <div className="loginPage-userInput">
-            <input placeholder='Username' className = "loginPage-inputs" type='text' value={username} onChange={handleUsernameChange} />
+          <div id="userInput">
+            <input placeholder='Username' id = "inputs" type='text' value={username} onChange={handleUsernameChange} />
           </div>
 
-          <div className="loginPage-userInput">
-            <input placeholder='Password' className = "loginPage-inputs" type='password' value={password} onChange={handlePasswordChange} />
-            <span className='loginPage-passwordToggleIcon'>
+          <div id="userInput">
+            <input placeholder='Password' id = "inputs" type={PasswordInputType} value={password} onChange={handlePasswordChange} />
+            <span id='passwordToggleIcon'>
               {ToggleIcon}
             </span>
           </div>
 
           <br></br>
-          <div className="LoginPage-loginButton">
-            
-            <button type="submit" className="loginPage-login" onClick={handleButtonClick}>
+            <button type="submit" id="loginButton" onClick={handleButtonClick}>
               LOG IN
             </button>
-            
-          </div>
         </form>
 
         <div className="LoginPage-forgetRemember">
