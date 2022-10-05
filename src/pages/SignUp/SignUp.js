@@ -29,13 +29,6 @@ const SignUp = () => {
 
   function handlePassword2Change(e) {
     setPassword2(e.target.value);
-
-    if (password1 !== password2) {
-      setPwSame(false)
-    } else {
-      setPwSame(true)
-    }
-
   }
 
   const handleButtonClick = async (e) => {
@@ -93,7 +86,7 @@ const SignUp = () => {
             </div>
 
             <div id="pwSame">
-              {pwSame===false ? <p>Passwords do not match.</p> : <p></p>}
+              {password1 !== password2 ? <p>Passwords do not match.</p> : <p></p>}
             </div>
             <br></br>
             <div className="signupPage-signupButton">
@@ -101,9 +94,9 @@ const SignUp = () => {
                 SIGN UP
               </button>
             </div>
-
-            <Link to="/" id="goLogin">Proceed to login</Link>
-            
+            <div className="goLogin">
+              <Link to="/" id="goLogin">Back to login</Link>
+            </div>
         </form>
     </div>
   );

@@ -95,16 +95,19 @@
     cursor: pointer;
 }
 
+.signupPage .goLogin{
+    margin-top: 50px;
+    display:flex; 
+    flex-direction:row;
+    justify-content:flex-start;
+    align-items: center;
+}
+
 .signupPage #goLogin{
     margin-left: 15px;
     color: white;
     text-decoration: none;
     font-size: 15px;
-    font-weight: bold;
-    display:flex; 
-    flex-direction:row;
-    justify-content:flex-start;
-    align-items: center;
 }
 
 @media screen and (max-width: 960px){
