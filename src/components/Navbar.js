@@ -47,7 +47,7 @@ function Navbar() {
             <div className='userSize' id='username'>Username</div>
             </Link>
 
-            <Link to='/' className='nav-links' id={window.location.pathname === '/' ? "active": ""} onClick={closeMobileMenu}>
+            <Link to='/homne' className='nav-links' id={window.location.pathname === '/' ? "active": ""} onClick={closeMobileMenu}>
             <div id='icon'><HomeIcon/></div>
             <div id='title'>Home</div>
             </Link>
@@ -69,13 +69,13 @@ function Navbar() {
             <div id='title'>Create</div>
             </Link>
 
-            <Link to='/' className='nav-links' id={window.location.pathname === '/review' ? "active": ""} onClick={closeMobileMenu}>
+            <Link to='/review' className='nav-links' id={window.location.pathname === '/review' ? "active": ""} onClick={closeMobileMenu}>
             <div id='icon'><RateReviewIcon/></div>
             <div id='title'>Add Review</div>
             </Link>
           </div>
 
-          <Link to='/Profile' className='userProfile-web' onClick={closeMobileMenu}>
+          <Link to='/profile' className='userProfile-web' onClick={closeMobileMenu}>
             <div className='imageSize'><img alt="profile" src="images/profile.png" id='profileImg'/></div>
             <div className='userSize' id='username'>Username</div>
           </Link>

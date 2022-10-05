@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import GroupNavbar from '../../components/GroupNavbar';
 import Navbar from '../../components/Navbar';
 import './Matches.css';
 import {Matcheslist} from './Matcheslist';
+import axios from 'axios';
 
 const Matches = () => {
   const [matchedMovies, setMatchedMovies] = useState([]);
