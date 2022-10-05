@@ -38,7 +38,7 @@ const Swipe = () => {
   const handleInterestClick = async (e) => {
     await axios.post(
       'http://127.0.0.1:5000/indicate_interest',
-      {username, groupName: "test", title: movie.random_title, interest:e.target.value},
+      {username, groupName: "test", title: movie.random_title, interest:e.target.value, movie_id:movie.movie_id},
       {
         headers: {
           'Content-Type': 'application/json',
