@@ -47,7 +47,7 @@ function Navbar() {
             <div className='userSize' id='username'>Username</div>
             </Link>
 
-            <Link to='/homne' className='nav-links' id={window.location.pathname === '/' ? "active": ""} onClick={closeMobileMenu}>
+            <Link to='/home' className='nav-links' id={window.location.pathname === '/' ? "active": ""} onClick={closeMobileMenu}>
             <div id='icon'><HomeIcon/></div>
             <div id='title'>Home</div>
             </Link>

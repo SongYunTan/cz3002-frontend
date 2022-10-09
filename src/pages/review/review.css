@@ -1,0 +1,87 @@
+.review{
+    height: 100%;
+    width: 100%;
+    background: #1e272e;
+    font-weight: bold;
+    display:flex; 
+    flex-direction:row;
+    justify-content: flex-start;
+    align-items: center;
+}
+.reviewpage{
+    height: 100%;
+    width: 100%;
+    display:flex; 
+    flex-direction:column;
+    justify-content: flex-start;
+    align-items: center;
+    outline: 1px solid #808e9b;
+    ;
+}
+.review-navbar{
+    height: 90px;
+    width: 100%;
+    outline: 1px solid #808e9b;
+    display:flex; 
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+.review-navbar .review-backicon{
+    font-size: 90px;
+}
+.review-backbtn{
+    width: 200px;
+    height: 100%;
+    color:white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background: transparent;
+    align-items: center;
+    border: none;
+}
+.review-backbtn:hover{
+    background-color: #d2dae2;
+    color: #1e272e;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+    transform: scale(1.08);
+}
+.review-header{
+    margin-left: 10px;
+    font-size: 40px;
+    color: white;
+}
+
+#input-box{
+    position:relative;
+    top: 15px;
+    right: 5px;
+    font-size: 30px;
+    border-radius: 10px;
+    width: 500px;
+}
+
+#submit-box{
+    font-size: 30px;
+    position: relative; 
+    top: 15px;
+}
+
+
+#title{
+    color: white;
+    font-size: 20px;
+    position: relative;
+    left: -150px;
+    top: 20px;
+}
+
+.movies{
+    display: flex;
+
+}
+.reviewcontent{
+    color: white;
+}
