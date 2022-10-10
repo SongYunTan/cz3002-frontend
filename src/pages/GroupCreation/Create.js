@@ -9,7 +9,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import './Create.css';
 import Popup from '../../components/Popup';
 import Navbar from '../../components/Navbar';
-import {listOfGenre} from './ListOfGenre';
+import {listOfGenre} from './listOfGenre';
 
 const Create = () => {
 
