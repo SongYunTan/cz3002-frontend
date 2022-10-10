@@ -8,7 +8,7 @@ import Create  from './pages/GroupCreation/Create';
 import Groupsetting from './pages/GroupSetting/Groupsetting';
 import Uprofile  from './pages/Uprofile/Uprofile';
 import Homepage from './pages/Home/Home';
-import Review from './pages/Review/Review';
+import Review from './pages/review/review';
 
 
 import { Home } from '@mui/icons-material';
