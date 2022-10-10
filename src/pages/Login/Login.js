@@ -54,15 +54,15 @@ const Login = () => {
   return (
     <div className="loginPage">
         <img alt="tindflix-logo" id="imagelogo" src={logo}/>
-        <form className="loginPage-form">
-          <div id="failedLogin">
+        <div id="failedLogin">
             {err==='' ? <p></p> : <p>The username and password is incorrect. Please try again.</p>}
           </div>
-          <div id="userInput">
+        <form className="loginPage-form">
+          <div id='userInput'>
             <input placeholder='Username' id = "inputs" type='text' value={username} onChange={handleUsernameChange} />
           </div>
 
-          <div id="userInput">
+          <div id='userInput'>
             <input placeholder='Password' id = "inputs" type={PasswordInputType} value={password} onChange={handlePasswordChange} />
             <span id='passwordToggleIcon'>
               {ToggleIcon}

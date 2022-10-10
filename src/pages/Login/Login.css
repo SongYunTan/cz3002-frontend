@@ -25,7 +25,7 @@
     align-items: center;
 }
 
-.loginPage-form #failedLogin {
+.loginPage #failedLogin {
     font-size: 15px;
     color: red;
     margin-bottom: -30px;
@@ -51,7 +51,7 @@
     border-radius: 10px;
 }
 
-.loginPage #passwordToggleIcon{
+.loginPage-form #passwordToggleIcon{
     margin-left: -45px;
     cursor: pointer;
     font-size: 20px;
@@ -117,15 +117,15 @@
 }
 
 @media screen and (max-width: 960px){
-    .loginPage-imagelogo{
+    .loginPage #imagelogo{
         width: 60%;
     }
 
-    .loginPage-userInput{
+    .loginPage-form #userInput{
         width: 60%;
     }
 
-    .LoginPage-loginButton{
+    .loginPage-form #loginButton{
         width: 60%;
     }
 

@@ -9,9 +9,9 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password1, setPassword1] = useState('');
-  const [PasswordInputType, ToggleIcon] = usePasswordToggle();
+  const [PasswordInputType1, ToggleIcon1] = usePasswordToggle();
   const [password2, setPassword2] = useState('');
-  const [pwSame, setPwSame] = useState(true);
+  const [PasswordInputType2, ToggleIcon2] = usePasswordToggle();
   const [err, setErr] = useState('');
   const [success, setSuccess] = useState(false);
 
@@ -55,15 +55,15 @@ const SignUp = () => {
   const logo = "images/logo.png"
   return (
     <div className="signupPage">
-        <img alt="tindflix-logo" className="signupPage-imagelogo" src={logo}/>
-        <form className="signupPage-form">
-            <div id="failedSignup">
-              {err==='' ? <p></p> : <p>The username is taken. Please try again.</p>}
-            </div>
-            <div id="successSignup">
-              {success===true ? <p>You have signed up successfully. Please proceed to log in.</p> : <p></p>}
-            </div>
+        <img alt="tindflix-logo" id="imagelogo" src={logo}/>
+        <div id="failedSignup">
+          {err==='' ? <p></p> : <p>The username is taken. Please try again.</p>}
+        </div>
+        <div id="successSignup">
+          {success===true ? <p>You have signed up successfully. Please proceed to log in.</p> : <p></p>}
+        </div>
 
+        <form className="signupPage-form">
             <div id="userInput">
               <input placeholder='Email' id = "inputs" type='text' value={email} onChange={handleEmailChange} />
             </div>
@@ -73,15 +73,15 @@ const SignUp = () => {
             </div>
 
             <div id="userInput">
-              <input placeholder='Password' id = "inputs" type={PasswordInputType} value={password1} onChange={handlePassword1Change} />
+              <input placeholder='Password' id = "inputs" type={PasswordInputType1} value={password1} onChange={handlePassword1Change} />
               <span id='passwordToggleIcon'>
-                {ToggleIcon}
+                {ToggleIcon1}
               </span>
             </div>
             <div id="userInput">
-              <input placeholder='Confirm Password' id = "inputs" type={PasswordInputType} value={password2} onChange={handlePassword2Change} />
+              <input placeholder='Confirm Password' id = "inputs" type={PasswordInputType2} value={password2} onChange={handlePassword2Change} />
               <span id='passwordToggleIcon'>
-                {ToggleIcon}
+                {ToggleIcon2}
               </span>
             </div>
 
@@ -89,14 +89,10 @@ const SignUp = () => {
               {password1 !== password2 ? <p>Passwords do not match.</p> : <p></p>}
             </div>
             <br></br>
-            <div className="signupPage-signupButton">
-              <button type="submit" className="signupPage-register" onClick={handleButtonClick}>
+              <button type="submit" id="signupButton" onClick={handleButtonClick}>
                 SIGN UP
               </button>
-            </div>
-            <div className="goLogin">
               <Link to="/" id="goLogin">Back to login</Link>
-            </div>
         </form>
     </div>
   );

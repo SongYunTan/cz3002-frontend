@@ -10,10 +10,28 @@
     margin: 0px;
 }
 
-.signupPage-imagelogo{
+.signupPage #imagelogo{
     height: 150px;
     width: 30%;
     transform: scale(0.9);
+}
+
+.signupPage #failedSignup {
+    font-size: 15px;
+    color: red;
+    margin-bottom: 5px;
+}
+
+.signupPage #successSignup {
+    font-size: 15px;
+    color: green;
+    margin-bottom: -30px;
+}
+
+.signupPage #pwSame {
+    font-size: 15px;
+    color: red;
+    margin-bottom: -30px;
 }
 
 .signupPage-form{
@@ -45,7 +63,7 @@
     border-radius: 10px;
 }
 
-.signupPage #passwordToggleIcon{
+.signupPage-form #passwordToggleIcon{
     margin-left: -45px;
     cursor: pointer;
     font-size: 20px;
@@ -55,33 +73,10 @@
     display: none;
 }
 
-.signupPage #failedSignup {
-    font-size: 15px;
-    color: red;
-    /* margin-bottom: -30px; */
-}
-
-.signupPage #successSignup {
-    font-size: 15px;
-    color: green;
-    /* margin-bottom: -30px; */
-}
-
-.signupPage #pwSame {
-    font-size: 15px;
-    color: red;
-    margin-bottom: -30px;
-}
-
-.signupPage-signupButton{
+.signupPage #signupButton{
     height: 10%;
     width: 30%;
     margin-top: 30px;
-}
-
-.signupPage-register{
-    height: 100%;
-    width: 100%;
     border-radius: 10px;
     border: none;
     background-color: cornflowerblue;
@@ -90,44 +85,38 @@
     font-weight: bold;
 }
 
-.signupPage-signupButton:hover{
+.signupPage #signupButton:hover{
     transform: scale(1.08);
     cursor: pointer;
 }
 
-.signupPage .goLogin{
-    margin-top: 50px;
+.signupPage #goLogin{
+    margin-top: 40px;
     display:flex; 
     flex-direction:row;
     justify-content:flex-start;
     align-items: center;
-}
-
-.signupPage #goLogin{
-    margin-left: 15px;
     color: white;
     text-decoration: none;
-    font-size: 15px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.signupPage #goLogin:hover{
+    transform: scale(1.08);
+    cursor: pointer;
 }
 
 @media screen and (max-width: 960px){
-    .signupPage-imagelogo{
+    .signupPage #imagelogo{
         width: 60%;
     }
 
-    .signupPage-userInput{
+    .signupPage #userInput{
         width: 60%;
     }
 
-    .signupPage-loginButton{
-        width: 60%;
-    }
-
-    .signupPage-forgetRemember{
-        width: 60%;
-    }
-
-    .signupPage-signupButton{
+    .signupPage #signupButton{
         width: 60%;
     }
 }

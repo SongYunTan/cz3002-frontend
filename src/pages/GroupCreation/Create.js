@@ -1,5 +1,6 @@
 import React, {useState,useRef,useEffect} from 'react'
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import EditIcon from '@mui/icons-material/Edit';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -8,15 +9,15 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import './Create.css';
 import Popup from '../../components/Popup';
 import Navbar from '../../components/Navbar';
-import {listOfGenre} from './listOfGenre';
-import {AddedMember} from './AddedMember';
+import {listOfGenre} from './ListOfGenre';
 
 const Create = () => {
 
+  /* =========================Horizontal Sliding================================ */
   const ref = useRef(null);
 
   useEffect(() => {
-    const slider = document.querySelector('.createGroup-memberImage-list');
+    const slider = document.querySelector('.createGroup-memberImage');
     let isDown = false;
     let startX;
     let scrollLeft;
@@ -44,53 +45,42 @@ const Create = () => {
       console.log(walk);
     });
   })
+  /* ================================================================ */
 
-  const Objects = [...listOfGenre];
+  /* =========================Get Genre================================ */
+  const [allgenre, setAllgenre] = useState([])
+
+  const getGenre = async () => {
+
+    await axios.get(
+      'http://127.0.0.1:5000/get_genres',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+      },
+    ).catch((err) => {
+      console.log(err.message);
+    }).then((response)=> {
+      console.log(JSON.stringify(response.data, null, 4));
+      setAllgenre(response.data);
+    });
+  };
+
+  useEffect(() =>{
+    getGenre();
+  },[])
+
+  const Objects = [...allgenre.map((e) => {
+    e.toggled = false
+    e.updated = false
+    return e;
+  })];
+
   const [genreState, changeState] = useState({
     Objects
   })
-
-  const[memberarray, setMemberArray] = useState([]);
-  const[button, setButton] = useState(false);
-  const[button1, setButton1] = useState(false);
-  const[button2, setButton2] = useState(false);
-  const[searchUsername, setUsername] = useState("");
-  const[GroupName, setGName] = useState("");
-  const[CurrentName, setCName] = useState("");
-
-  const handleSubmit = event => {
-    event.preventDefault();
-
-    setTimeout(() => {
-      setCName(GroupName)
-      setButton(false)
-    }, 2000)
-  }
-
-  const checkItemExist = (arr,username) => {
-    let find = arr.find(
-      (object) => object.username === username
-    );
-
-    if(find){
-      return false;
-    }
-    else{
-      return true;
-    }
-  }
-
-  const addedMember = (userName) => {
-    const item = AddedMember.find(
-      (item) => item.username === userName
-    );
-    
-    if(checkItemExist(memberarray, item.username)){
-      setMemberArray(prev => prev.concat(item))
-    }
-    setUsername("");
-    setButton2(false);
-  }
 
   const toggleGenreActive = (index) => {
     let array = [...genreState.Objects];
@@ -143,66 +133,136 @@ const Create = () => {
       changeState({...genreState, Objects: newState});
     }, 2000)
   };
+  /* ================================================================ */
+
+  /* =========================Pop Up buttons================================ */
+  const[button, setButton] = useState(false);
+  const[button1, setButton1] = useState(false);
+  const[button2, setButton2] = useState(false);
+  /* ================================================================ */
+
+  /* =========================Group UserName================================ */
+  const[GroupName, setGName] = useState("");
+  const[CurrentName, setCName] = useState("");
+
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    setTimeout(() => {
+      setCName(GroupName)
+      setButton(false)
+    }, 2000)
+  }
+  /* ================================================================ */
+
+  /* =========================Group Members================================ */
+  const[memberarray, setMemberArray] = useState([]);
+  const[searchUsername, setUsername] = useState("");
+
+  const [allUsers, setAllUsers] = useState([])
+
+  const getUsers = async () => {
+
+    await axios.get(
+      'http://127.0.0.1:5000/get_users',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+      },
+    ).catch((err) => {
+      console.log(err.message);
+    }).then((response)=> {
+      console.log(JSON.stringify(response.data, null, 4));
+      setAllUsers(response.data);
+    });
+  };
+
+  useEffect(() =>{
+    getUsers();
+  },[])
+
+  const checkItemExist = (arr,username) => {
+    let find = arr.find(
+      (object) => object.username === username
+    );
+
+    return find? false : true;
+  }
+
+  const addedMember = (userName) => {
+    const item = allUsers.find(
+      (item) => item.username === userName
+    );
+    
+    if(checkItemExist(memberarray, item.username)){
+      setMemberArray(prev => prev.concat(item))
+    }
+    setUsername("");
+    setButton2(false);
+  }
+  /* ================================================================ */
 
   return (
-    <div className="createGroup-page">
+    <div className="createGroupPage">
       <Navbar />
-      <div className='createGroup-container'>
+      <div className='createGroup-Container'>
         <div className='createGroup-navbar'>
-          <Link to='/' className="createGroup-backbtn">
-          <KeyboardBackspaceIcon className='createGroup-backicon'/>
+          <Link to='/' id="backbtn">
+          <KeyboardBackspaceIcon id='backicon'/>
           </Link>
-          <div className='createGroup-header'>Create New Group</div>
+          <div id='header'>Create New Group</div>
         </div>
         <div className='createGroup-details'>
           <div className='createGroup-groupname'>
-            <Link to='/' className="createGroup-backbtn-mobile">
-            <KeyboardBackspaceIcon className='createGroup-backicon-mobile'/>
+            <Link to='/' id="backbtn-mobile">
+            <KeyboardBackspaceIcon id='backicon-mobile'/>
             </Link>
             <div className='createGroup-groupname-heading' >
-              <h2 className='createGroup-grouptitle'>Group Name:</h2>
-              <h2 className='createGroup-typedName'>{CurrentName}</h2>
-              <button class="createGroup-editbtn"
+              <h2 id='title'>Group Name:</h2>
+              <h2 id='newGroupName'>{CurrentName}</h2>
+              <button className='createEditBtn'
                 onClick={() => setButton(true)}>
-                <EditIcon className='editgnicon'/>
+                <EditIcon id='editicon'/>
               </button>
             </div>
             <Popup trigger = {button} setTrigger= {setButton}>
-              <div className = "popup-enterGname">
-                <h3 className='groupName-title'>Enter Group Name:</h3>
+              <div className = "popup-enterNewName">
+                <h3 id='title'>Enter Group Name:</h3>
                 <form onSubmit={handleSubmit}>
-                  <input value={GroupName} placeholder="Group Name" onChange={e => setGName(e.target.value)} type="text" className="groupname_inputbox"></input>
-                  <button value="Submit" className="groupName-submitButton">
-                    <CheckCircleIcon className='groupName-submit'/>
+                  <input id="input" value={GroupName} placeholder="Group Name" onChange={e => setGName(e.target.value)} type="text"></input>
+                  <button value="Submit" className='submitButton'>
+                    <CheckCircleIcon id='circleIcon'/>
                   </button>
                 </form>
               </div>
             </Popup>
           </div>
 
-          <div className='createGroup-member-title'>
-            <h2 className='createGroup-member-titleheader'>Members:</h2>
-            <div className='createGroup-member-list'>
-              <div ref={ref} className='createGroup-memberImage-list'>
+          <div className='createGroup-members'>
+            <h2 id='header'>Members:</h2>
+            <div className='createGroup-memberList'>
+              <div ref={ref} className='createGroup-memberImage'>
                 {memberarray.map((val, key) =>{
                   return (
                   <button key={key} className='createGroup-memberInfo'>
-                  <img alt="createGroup-memberprofile" src={val.image} id='createGroup-memberImg'/>
-                  <div id='createGroup-memberusername'>{val.username}</div>
+                  <img alt="member Profile" src="images/profile.png" id='memberImage'/>
+                  <div id='userName'>{val.username}</div>
                   </button>)
                   })
                 }
               </div>
-              <button className='createGroup-member-addMember' onClick={() => setButton2(true)}>
-                <AddCircleIcon className='createGroup-addMember-btn'/>
+              <button className='createGroup-addMember' onClick={() => setButton2(true)}>
+                <AddCircleIcon id='addMember-btn'/>
               </button>
             </div>
             <Popup trigger = {button2} setTrigger= {setButton2}>
-              <div ClassName='popup-AddMember'>
+              <div className='popup-AddMember'>
                 <input placeholder="Search Username" type="text" 
                 className="createGroup-searchAllUser" onChange={e => {setUsername(e.target.value)}}></input>
-                <div className='createGroup-alluser-list'>
-                    {AddedMember.filter((val) =>{
+                <div className='createGroup-allUserList'>
+                    {allUsers.filter((val) =>{
                       if (searchUsername === ""){
                         return val
                       } else if (val.username.toLowerCase().includes(searchUsername.toLowerCase())){
@@ -211,8 +271,8 @@ const Create = () => {
                     }).map((val, key) =>{
                       return (
                       <button key={key} className='createGroup-userInfo' onClick={() => addedMember(val.username)}>
-                      <img alt="createGroup-user" src={val.image} id='createGroup-userImg'/>
-                      <div id='createGroup-username'>{val.username}</div>
+                      <img alt="createGroup-user" src="images/profile.png" id='userImage'/>
+                      <div id='userName'>{val.username}</div>
                       </button>)
                       })
                     }
@@ -221,20 +281,20 @@ const Create = () => {
             </Popup>
           </div>
 
-          <div className='createGroup-genre-input'>
-            <h2 className='createGroup-genre-title'>Genre:</h2>
-            <button class="createGroup-genre-editbtn"
+          <div className='createGroup-genreInput'>
+            <h2 id='title'>Genre:</h2>
+            <button className="createGroup-genreEditBtn"
               onClick={applyGenreUpdate}>
-              <EditIcon className='editgenreicon'/>
+              <EditIcon id='editicon'/>
             </button>
             <Popup trigger = {button1} setTrigger= {setButton1}>
-              <div className='createGroup-genre-selectingGenre'>
-                <button className='createGroup-addGenre' onClick={applyGenre}>Apply Changes</button>
-                <ul className='createGroup-genre-list'>
+              <div className='createGroup-selectingGenre'>
+                <button id='addGenre' onClick={applyGenre}>Apply Changes</button>
+                <ul className='createGroup-genreList'>
                   {genreState.Objects.map((val, key) =>{
                       return (
-                      <li className='createGroup-genre-row'>
-                      <button key={key} 
+                      <li key={key} className='createGroup-genreRow'>
+                      <button
                       className={toggleGenreButton(key)} 
                       onClick={() => toggleGenreActive(key)}>{val.name}</button>
                       </li>)
@@ -248,8 +308,8 @@ const Create = () => {
           <div className='createGroup-selectedGenre'>
             {genreState.Objects.map((val, key) =>{
               return (
-                <div className='createGroup-genreSelected-row'>
-                <button key={key} 
+                <div key={key} className='createGroup-genreSelected-row'>
+                <button
                 className ={toggleGenreSelected(key)}>{val.name}</button>
                 <button className={toggleGenreCancel(key)} onClick={() => toggleGenreSelectedActive(key)}>
                   <CancelIcon className='genreSelected-cancelActive'/>
@@ -260,8 +320,8 @@ const Create = () => {
           </div>
 
           <div className='createGroup-buttons'>
-            <button class="createGroup-cancelbtn">Cancel</button>
-            <button class="createGroup-createbtn">Create Group</button>
+            <button id="cancelbtn">Cancel</button>
+            <button id="createbtn">Create Group</button>
           </div>
 
         </div>

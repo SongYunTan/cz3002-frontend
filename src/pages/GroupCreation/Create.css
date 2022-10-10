@@ -1,4 +1,4 @@
-.createGroup-page{
+.createGroupPage{
     height: 100%;
     width: 100%;
     background: #1e272e;
@@ -9,7 +9,7 @@
     align-items: center;
 }
 
-.createGroup-container{
+.createGroup-Container{
     height: 100%;
     width: 100%;
     display:flex; 
@@ -28,11 +28,11 @@
     align-items: center;
 }
 
-.createGroup-navbar .createGroup-backicon{
+.createGroup-navbar #backicon{
     font-size: 90px
 }
 
-.createGroup-backbtn{
+.createGroup-navbar #backbtn{
     width: 200px;
     height: 100%;
     color:white;
@@ -44,7 +44,7 @@
     border: none;
 }
 
-.createGroup-backbtn:hover{
+.createGroup-navbar #backbtn:hover{
     background-color: #d2dae2;
     color: #1e272e;
     transition: all 0.2s ease-out;
@@ -52,7 +52,7 @@
     transform: scale(1.08);
 }
 
-.createGroup-header{
+.createGroup-navbar #header{
     margin-left: 10px;
     font-size: 40px;
     color: white;
@@ -77,7 +77,7 @@
     color: white;
 }
 
-.createGroup-backbtn-mobile{
+.createGroup-groupname #backbtn-mobile{
     display: none;
 }
 
@@ -90,19 +90,15 @@
     height: 100px;
 }
 
-.createGroup-grouptitle{
+.createGroup-groupname-heading #title{
     margin-left: 80px;
 }
 
-.createGroup-typedName{
+.createGroup-groupname-heading #newGroupName{
     margin-left: 20px;
 }
 
-.createGroup-groupname .editgnicon{
-    font-size: 40px
-}
-
-.createGroup-editbtn{
+.createEditBtn{
     width: 200px;
     height: 90px;
     color:white;
@@ -114,14 +110,18 @@
     border: none;
 }
 
-.createGroup-editbtn:hover{
+.createEditBtn:hover{
     color: #d2dae2;
     transition: all 0.2s ease-out;
     cursor: pointer;
     transform: scale(1.08);
 }
 
-.popup-enterGname{
+.createEditBtn #editicon{
+    font-size: 40px
+}
+
+.popup-enterNewName{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -129,7 +129,7 @@
     width: 90%
 }
 
-.groupName-title{
+.popup-enterNewName #title{
     position: relative;
     left: 16px;
     top: -30px;
@@ -137,7 +137,7 @@
     color: #1e272e;
 }
 
-.groupname_inputbox{
+.popup-enterNewName #input{
     position: relative;
     left: 16px;
     bottom: 16px;
@@ -149,11 +149,11 @@
     background: #1e272e;
 }
 
-.groupName-submitButton .groupName-submit{
+.submitButton #circleIcon{
     font-size: 60px;
 }  
 
-.groupName-submitButton{
+.submitButton{
     margin-left: 50px;
     color:white;
     background: transparent;
@@ -161,14 +161,14 @@
     border: none;
 }
 
-.groupName-submitButton:hover{
+.submitButton:hover{
     color:#44bd32;
     transition: all 0.2s ease-out;
     cursor: pointer;
     transform: scale(1.08);
 }
 
-.createGroup-member-title{
+.createGroup-members{
     color: white;
     width: auto;
     height: 200px;
@@ -178,7 +178,7 @@
     align-items: right;
 }
 
-.createGroup-member-list{
+.createGroup-memberList{
     width: 700px;
     height: 150px;
     display: flex;
@@ -188,11 +188,11 @@
     margin-left: 80px;
 }
 
-.createGroup-member-titleheader{
+.createGroup-members #header{
     margin-left: 80px;
 }
 
-.createGroup-memberImage-list{
+.createGroup-memberImage{
     height: 100%;
     max-width: 75%;
     display: flex;
@@ -204,7 +204,7 @@
     overflow-y: hidden;
 }
 
-.createGroup-memberImage-list::-webkit-scrollbar{
+.createGroup-memberImage::-webkit-scrollbar{
     display: none;
 }
 
@@ -218,21 +218,21 @@
     background: transparent;
 }
 
-.createGroup-memberInfo #createGroup-memberImg{
+.createGroup-memberInfo #memberImage{
     height: 110px;
     width: 110px;
     overflow:hidden;
     border-radius: 50%;
 }
 
-.createGroup-memberInfo #createGroup-memberusername{
+.createGroup-memberInfo #userName{
     color: white;
     font-size: 20px;
     font-weight: bold;
     margin-top:10px;
 }
 
-.createGroup-member-addMember{
+.createGroup-addMember{
     height: 100%;
     width: auto;
     border: none;
@@ -240,11 +240,11 @@
     color:#636e72;
 }
 
-.createGroup-member-addMember .createGroup-addMember-btn{
+.createGroup-addMember #addMember-btn{
     font-size: 150px;
 }
 
-.createGroup-addMember-btn:hover{
+.createGroup-addMember #addMember-btn:hover{
     color: #d2dae2;
     transition: all 0.2s ease-out;
     cursor: pointer;
@@ -263,20 +263,20 @@
     font-size: 40px;
     width: 70%;
     margin-bottom: 20px;
-    margin-left: 60px;
+    margin-left: -20px;
     border-radius: 10px;
     border: none;
     color: white;
     background: #1e272e;
 }
 
-.createGroup-alluser-list{
-    width: 90%;
+.createGroup-allUserList{
+    width: 95%;
     height: 300px;
     overflow-y: auto;
 }
 
-.createGroup-alluser-list::-webkit-scrollbar{
+.createGroup-allUserList::-webkit-scrollbar{
     display: none;
 }
 
@@ -292,14 +292,14 @@
     border-bottom: 1px solid gray;
 }
 
-.createGroup-userInfo #createGroup-userImg{
+.createGroup-userInfo #userImage{
     height: 70px;
     width: 70px;
     overflow:hidden;
     border-radius: 50%;
 }
 
-.createGroup-userInfo #createGroup-username{
+.createGroup-userInfo #userName{
     color: white;
     margin-left: 10px;
     font-size: 40px;
@@ -314,25 +314,26 @@
     transition: all 0.2s ease-out;
 }
 
-.createGroup-genre-input{
+.createGroup-genreInput{
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     width: 100%;
     height: 100px;
+    margin-top: 15px;
 }
 
-.createGroup-genre-title{
+.createGroup-genreInput #title{
     color: white;
     margin-left: 80px;
 }
 
-.createGroup-genre-input .editgenreicon{
+.createGroup-genreEditBtn #editicon{
     font-size: 40px
 }
 
-.createGroup-genre-editbtn{
+.createGroup-genreEditBtn{
     width: 200px;
     height: 90px;
     color:white;
@@ -344,21 +345,21 @@
     border: none;
 }
 
-.createGroup-genre-editbtn:hover{
+.createGroup-genreEditBtn:hover{
     color: #d2dae2;
     transition: all 0.2s ease-out;
     cursor: pointer;
     transform: scale(1.08);
 }
 
-.createGroup-genre-selectingGenre{
+.createGroup-selectingGenre{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: right;
 }
 
-.createGroup-addGenre{
+.createGroup-selectingGenre #addGenre{
     width: 20%;
     height: 40px;
     border-radius: 10px;
@@ -369,7 +370,7 @@
     font-size: 15px;
 }
 
-.createGroup-addGenre:hover{
+.createGroup-selectingGenre #addGenre:hover{
     transform: scale(1.08);
     font-size: 15px;
     background: #778ca3;
@@ -377,7 +378,7 @@
     cursor: pointer;
 }
 
-.createGroup-genre-list{
+.createGroup-genreList{
     list-style: none;
     width: 80%;
     height: 150px;
@@ -389,11 +390,11 @@
     overflow-y: auto;
 }
 
-.createGroup-genre-list::-webkit-scrollbar{
+.createGroup-genreList::-webkit-scrollbar{
     display: none;
 }
 
-.createGroup-genre-row{
+.createGroup-genreRow{
     width: 20%;
     height: 40px;
     padding: 10px;
@@ -499,7 +500,7 @@
     align-items: right;
 }
 
-.createGroup-cancelbtn{
+.createGroup-buttons #cancelbtn{
     height: 40px;
     width: 150px;
     background: #eb3b5a;
@@ -510,14 +511,14 @@
     color: white;
 }
 
-.createGroup-cancelbtn:hover{
+.createGroup-buttons #cancelbtn:hover{
     background: #fc5c65;   
     color: #1e272e;
     transform: scale(1.08);
     cursor: pointer;
 }
 
-.createGroup-createbtn{
+.createGroup-buttons #createbtn{
     height: 40px;
     width: 150px;
     font-size: 20px;
@@ -529,7 +530,7 @@
     color: white;
 }
 
-.createGroup-createbtn:hover{
+.createGroup-buttons #createbtn:hover{
     background: #26de81;   
     color: #1e272e;
     transform: scale(1.08);
@@ -537,7 +538,7 @@
 }
 
 @media screen and (max-width: 960px){
-    .createGroup-page{
+    .createGroupPage{
         margin: 0;
         padding: 0;
         display:flex; 
@@ -546,7 +547,7 @@
         align-items: center;
     }
 
-    .createGroup-container{
+    .createGroup-Container{
         height: 90vh;
     }
 
@@ -554,7 +555,7 @@
         display: none;
     }
 
-    .createGroup-backbtn-mobile{
+    .createGroup-groupname #backbtn-mobile{
         width: 100%;
         height: 100px;
         color:white;
@@ -566,11 +567,11 @@
         border: none;
     }
 
-    .createGroup-backbtn-mobile .createGroup-backicon-mobile{
+    .createGroup-groupname #backicon-mobile{
         font-size: 60px;
     }
 
-    .createGroup-backbtn-mobile:hover{
+    .createGroup-groupname #backbtn-mobile:hover{
         color: #d2dae2;
         transition: all 0.2s ease-out;
         cursor: pointer;
@@ -585,30 +586,30 @@
         align-items: right;
     }
 
-    .createGroup-member-title{
+    .createGroup-members #header{
         padding-top: 40px;
         width: 100%;
         height: 200px;
     }
 
-    .createGroup-member-list{
+    .createGroup-memberList{
         width: 80%;
     }
     
-    .createGroup-memberImage-list{
+    .createGroup-memberInfo{
         max-width: 75%;
     }
 
-    .createGroup-member-addMember{
+    .createGroup-addMember{
         height: 100%;
         width: 25%;
     }
 
-    .createGroup-member-addMember .createGroup-addMember-btn{
+    .createGroup-addMember #addMember-btn{
         font-size: 100px;
     }
     
-    .createGroup-memberInfo #createGroup-memberImg{
+    .createGroup-memberInfo #memberImage{
         height: 80px;
         width: 80px;
     }
@@ -616,10 +617,9 @@
     .createGroup-searchAllUser{
         font-size: 30px;
         margin-bottom: 20px;
-        margin-left: 50px;
     }
 
-    .createGroup-genre-list{
+    .createGroup-genreList{
         list-style: none;
         width: 90%;
         height: 150px;
