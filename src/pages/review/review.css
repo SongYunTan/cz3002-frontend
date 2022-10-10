@@ -71,7 +71,6 @@
 .movie-content{
 	height: 100%;
 	width: 100%;
-	outline: 1px solid #808e9b;
 	display:flex; 
 	flex-direction:row;
 	justify-content: flex-start;
@@ -124,11 +123,11 @@
     color: #1e272e;
 }
 
-.popup-addReview #userInput{
+.popup-addReview #inputs{
     position: relative;
     left: 16px;
     bottom: 16px;
-    font-size: 40px;
+    font-size: 20px;
     width: 70%;
     border: none;
     border-radius: 10px;

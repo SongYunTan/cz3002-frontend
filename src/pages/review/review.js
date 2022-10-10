@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Navbar from '../../components/Navbar';
 import {reviewcontent} from './reviewcontent';
 import './review.css'
@@ -6,12 +6,14 @@ import { Link } from 'react-router-dom';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import axios from 'axios';
 import Popup from '../../components/Popup';
-import { StarRatingInput } from 'react-star-rating-input';
+import { StarRatingInput, css } from 'react-star-rating-input';
+import insertCss from 'insert-css'
 import { useGlobalState } from '../../state';
+
+insertCss(css)
 
 const Review = () => {
   const [movieName, setMovieName] = useState('');
-  const [response, setResponse] = useState([]);
   const [movies, setMovies] = useState([]);
   const [star, setStar] = useState(0);
   const [review, setReview] = useState('');
@@ -25,7 +27,7 @@ const Review = () => {
 
   const handleSearchMovie = async (e) => {
     e.preventDefault()
- 
+    console.log(movieName)
     await axios.post(
       'http://127.0.0.1:5000/search_movie',
       {movie: movieName},
@@ -39,21 +41,18 @@ const Review = () => {
       console.log(err.message);
     }).then((response)=> {
       console.log(JSON.stringify(response.data, null, 4));
-      setResponse(response.data);
+      setMovies(response.data);
     });
   };
 
-  useEffect(() => {
-    setMovies(response);
-  }, [response]);
 
   function handleAddReviewBtn(movieTitle) {
     setAddReviewButton(true);
     setMovieChosen(movieTitle);
   }
 
-  function handleStarChange(e) {
-    setStar(e.target.value);
+  function handleStarChange(value) {
+    setStar(value);
   }
 
   function handleReviewChange(e) {
@@ -62,13 +61,13 @@ const Review = () => {
 
   const handleSubmitReview = async (e) => {
     e.preventDefault()
- 
+    console.log(username, movieChosen, star, review)
     await axios.post(
       'http://127.0.0.1:5000/add_review',
-      {username, movieChosen, star, review},
+      {username, title: movieChosen, star, review},
       {
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json',g
           Accept: 'application/json',
         },
       },
@@ -95,14 +94,14 @@ const Review = () => {
             <input type='submit' value='Search' id='submit-box' onClick={handleSearchMovie}/>
           </div>
         </form>
-        <div>
+        <div className="movie-content">
           {movies.map((val, key) =>{
               return (
                 <div className="movie">
                   <img className='matchesMoviePoster' alt='movie poster' src={val.url}></img>
                   <p>{val.title}</p>
                   <button className='addReviewBtn'
-                    onClick={handleAddReviewBtn(val.title)}>
+                    onClick={() => handleAddReviewBtn(val.title)}>
                     Add Review
                   </button>
                 </div>)
@@ -119,7 +118,7 @@ const Review = () => {
                 onChange={handleStarChange} />
 
               <div id='userInput'>
-                <input placeholder='Review' id = "inputs" type='text' value={review} onChange={handleReviewChange} />
+                <textarea placeholder='Review' id = "inputs" type='text' value={review} onChange={handleReviewChange} ></textarea>
               </div>
 
               <br></br>
