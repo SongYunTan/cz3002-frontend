@@ -11,6 +11,7 @@ import { useGlobalState } from '../../state';
 
 const Review = () => {
   const [movieName, setMovieName] = useState('');
+  const [response, setResponse] = useState([]);
   const [movies, setMovies] = useState([]);
   const [star, setStar] = useState(0);
   const [review, setReview] = useState('');
@@ -26,8 +27,8 @@ const Review = () => {
     e.preventDefault()
  
     await axios.post(
-      'http://127.0.0.1:5000/get_review',
-      {movieName},
+      'http://127.0.0.1:5000/search_movie',
+      {movie: movieName},
       {
         headers: {
           'Content-Type': 'application/json',
@@ -38,9 +39,13 @@ const Review = () => {
       console.log(err.message);
     }).then((response)=> {
       console.log(JSON.stringify(response.data, null, 4));
-      setMovies(response.data);
+      setResponse(response.data);
     });
   };
+
+  useEffect(() => {
+    setMovies(response);
+  }, [response]);
 
   function handleAddReviewBtn(movieTitle) {
     setAddReviewButton(true);
@@ -77,7 +82,7 @@ const Review = () => {
   return (
     <div className='review'>
       <Navbar />
-      <div class="reviewpage">
+      <div className="reviewpage">
         <div className='review-navbar'>
           <Link to='/' className="review-backbtn">
             <KeyboardBackspaceIcon className='review-backicon'/>
@@ -85,9 +90,9 @@ const Review = () => {
           <div className='review-header'>Add Review</div>        
         </div>
         <form>
-          <div class="searchbox">
-          <input type="movename" placeholder="Search Movies" id="input-box" value={movieName} onChange={handleMovieChange}/>
-          <input type='submit' value='Search' id='submit-box' onClick={handleSearchMovie}/>
+          <div className="searchbox">
+            <input type="movename" placeholder="Search Movies" id="input-box" value={movieName} onChange={handleMovieChange}/>
+            <input type='submit' value='Search' id='submit-box' onClick={handleSearchMovie}/>
           </div>
         </form>
         <div>
