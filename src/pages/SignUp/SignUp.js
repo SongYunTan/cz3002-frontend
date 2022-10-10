@@ -14,9 +14,20 @@ const SignUp = () => {
   const [PasswordInputType2, ToggleIcon2] = usePasswordToggle();
   const [err, setErr] = useState('');
   const [success, setSuccess] = useState(false);
+  const [emailValid, setEmailValid] = useState(null);
+
+  function isValidEmail(email) {
+    return /\S+@\S+\.\S+/.test(email);
+  }
 
   function handleEmailChange(e) {
     setEmail(e.target.value);
+
+    if (!isValidEmail(e.target.value)) {
+      setEmailValid(false);
+    } else {
+      setEmailValid(null);
+    }
   }
 
   function handleUsernameChange(e) {
@@ -67,6 +78,9 @@ const SignUp = () => {
             <div id="userInput">
               <input placeholder='Email' id = "inputs" type='text' value={email} onChange={handleEmailChange} />
             </div>
+            <div id="errMsg">
+              {emailValid===false && <p>Please input a valid email.</p>}
+            </div>
 
             <div id="userInput">
               <input placeholder='Username' id = "inputs" type='text' value={username} onChange={handleUsernameChange} />
@@ -84,10 +98,10 @@ const SignUp = () => {
                 {ToggleIcon2}
               </span>
             </div>
-
-            <div id="pwSame">
-              {password1 !== password2 ? <p>Passwords do not match.</p> : <p></p>}
+            <div id="errMsg">
+              {password1 !== password2 && <p>Passwords do not match.</p>}
             </div>
+
             <br></br>
               <button type="submit" id="signupButton" onClick={handleButtonClick}>
                 SIGN UP
