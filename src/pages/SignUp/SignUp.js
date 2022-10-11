@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import usePasswordToggle from '../../components/usePasswordToggle';
 import './SignUp.css';
 import axios from 'axios';
+import { useEffect } from 'react';
 
 
 const SignUp = () => {
@@ -15,6 +16,11 @@ const SignUp = () => {
   const [err, setErr] = useState('');
   const [emailValid, setEmailValid] = useState(null);
   const [userID, setUserID] = useState('')
+
+
+  useEffect(()=>{
+    routeChange()
+  }, [userID])
 
   let navigate = useNavigate(); 
   const routeChange = () =>{ 
@@ -66,7 +72,7 @@ const SignUp = () => {
     }).then((response)=> {
       console.log(JSON.stringify(response.data, null, 4));
       setUserID(response.data.id);
-      routeChange();
+      // routeChange();
     });
   };
 

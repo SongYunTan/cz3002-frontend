@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import './Verify.css';
 import axios from 'axios';
 import { Oval } from 'react-loading-icons';
+import { useEffect } from 'react';
 
 const Verify = () => {
   const logo = "images/logo.png"
@@ -20,16 +21,18 @@ const Verify = () => {
   function handleCodeChange(e) {
     const result = e.target.value.replace(/\D/g, '');
     setCode(result);
-    if (result.length===6) {
-      callVerifyAPI();
-    }
   }
 
-  const callVerifyAPI = async (e) => {
+  useEffect(()=>  {
+    if (code.length===6) {
+      callVerifyAPI();
+    }
+  }, [code]);
+
+
+  const callVerifyAPI = async () => {
     setErr('')
-    e.preventDefault()
     setIsLoading(true);
- 
     await axios.post(
       'http://127.0.0.1:5000/verify-code',
       {id, code},
@@ -42,7 +45,7 @@ const Verify = () => {
     ).catch((err) => {
       setErr(err.message);
     }).then((response)=> {
-      console.log(JSON.stringify(response.data, null, 4));
+      console.log(response)
       setSuccess(true);
       setIsLoading(false);
     });
