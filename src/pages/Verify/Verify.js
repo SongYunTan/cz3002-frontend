@@ -33,6 +33,7 @@ const Verify = () => {
   const callVerifyAPI = async () => {
     setErr('')
     setIsLoading(true);
+    setSuccess(false);
     await axios.post(
       'http://127.0.0.1:5000/verify-code',
       {id, code},
@@ -44,9 +45,12 @@ const Verify = () => {
       },
     ).catch((err) => {
       setErr(err.message);
+      setIsLoading(false);
     }).then((response)=> {
       console.log(response)
-      setSuccess(true);
+      if (response.status === 200) {
+        setSuccess(true);
+      }
       setIsLoading(false);
     });
   };
@@ -85,9 +89,9 @@ const Verify = () => {
           <div id='userInput'>
             <input id = "inputs" type='text' maxLength={6} value={code} onChange={handleCodeChange} />
           </div>
-          <div className="verifyPage-resendCode">
+          {/* <div className="verifyPage-resendCode">
             <p id="resendCode" onClick={resendCode}>Resend Code</p>
-          </div>
+          </div> */}
           {isLoading===true && <Oval />}
           {success===true && <Link to="/" id="goLogin">Back to login</Link>}
         </form>
