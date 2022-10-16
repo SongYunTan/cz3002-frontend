@@ -67,7 +67,7 @@ const Review = () => {
       {username, title: movieChosen, star, review},
       {
         headers: {
-          'Content-Type': 'application/json',g
+          'Content-Type': 'application/json',
           Accept: 'application/json',
         },
       },
