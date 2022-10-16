@@ -16,7 +16,6 @@
     justify-content: flex-start;
     align-items: center;
     outline: 1px solid #808e9b;
-    ;
 }
 .review-navbar{
     height: 90px;
@@ -69,6 +68,26 @@
     top: 15px;
 }
 
+.movie-content{
+	height: 100%;
+	width: 100%;
+	display:flex; 
+	flex-direction:row;
+	justify-content: flex-start;
+	color: white;
+}
+
+.movie {
+	padding: 20px;
+	text-align: center;
+}
+
+.reviewMoviePoster{
+	height: 200px;
+	width: 150px;
+	border-radius: 10px;
+	margin-top: 20px;
+}
 
 #title{
     color: white;
@@ -78,10 +97,60 @@
     top: 20px;
 }
 
-.movies{
-    display: flex;
-
+.addReviewBtn {
+    background: cornflowerblue;
+    color: white;
+    height: 40px;
+    width: 150px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
 }
-.reviewcontent{
+
+.popup-addReview{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: left;
+    width: 90%
+}
+
+.popup-addReview #title{
+    position: relative;
+    left: 16px;
+    top: -30px;
+    font-size: 40px;
+    color: #1e272e;
+}
+
+.popup-addReview #inputs{
+    position: relative;
+    left: 16px;
+    bottom: 16px;
+    font-size: 20px;
+    width: 70%;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background: #1e272e;
+}
+
+.popup-addReview button{
+    height: 40px;
+    width: 150px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 40px;
+    background: cornflowerblue;
+    border-radius: 10px;
+    border: 0px;
     color: white;
 }
+
+.popup-addReview #createbtn:hover{
+    background: cornflowerblue;   
+    color: #1e272e;
+    transform: scale(1.08);
+    cursor: pointer;
+}
+

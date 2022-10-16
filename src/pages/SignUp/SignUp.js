@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import { Link } from "react-router-dom";
 
-//import axios from '../../api/ApiConnection';
 import axios from 'axios';
 import usePasswordToggle from '../../components/usePasswordToggle';
 import './SignUp.css';
@@ -16,6 +15,11 @@ const SignUp = () => {
   const [PasswordInputType2, ToggleIcon2] = usePasswordToggle();
   const [err, setErr] = useState('');
   const [success, setSuccess] = useState(false);
+  const [emailValid, setEmailValid] = useState(null);
+
+  function isValidEmail(email) {
+    return /\S+@\S+\.\S+/.test(email);
+  }
 
   function handleEmailChange(e) {
     setEmail(e.target.value);
@@ -61,7 +65,7 @@ const SignUp = () => {
     <div className="signupPage">
         <img alt="tindflix-logo" id="imagelogo" src={logo}/>
         <div id="failedSignup">
-          {err==='' ? <p></p> : <p data-testid="failedSignup">The username is taken. Please try again.</p>}
+          {err==='' ? <p></p> : <p>The username is taken. Please try again.</p>}
         </div>
         <div id="successSignup">
           {success===true ? <p>You have signed up successfully. Please proceed to log in.</p> : <p></p>}
@@ -96,7 +100,6 @@ const SignUp = () => {
               <button type="submit" id="signupButton" onClick={handleButtonClick}>
                 SIGN UP
               </button>
-              <Link to="/" id="goLogin">Back to login</Link>
         </form>
     </div>
   );
