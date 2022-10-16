@@ -18,7 +18,6 @@ const SignUp = () => {
   const [success, setSuccess] = useState(false);
   const [userID, setUserID] = useState('')
 
-
   let navigate = useNavigate();
   const routeChange = () =>{ 
     let path = `/Verify`; 
@@ -28,7 +27,6 @@ const SignUp = () => {
   function isValidEmail(email) {
     return /\S+@\S+\.\S+/.test(email);
   }
-
   function handleEmailChange(e) {
     setEmail(e.target.value);
     if (!isValidEmail(e.target.value)) {
