@@ -9,7 +9,8 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import axios from 'axios';
 import Popup from '../../components/Popup';
 import Navbar from '../../components/Navbar';
-import {listOfGenre} from './ListOfGenre';
+import Neverlogin from '../Neverlogin/Neverlogin';
+import './Create.css';
 
 const Create = () => {
 
