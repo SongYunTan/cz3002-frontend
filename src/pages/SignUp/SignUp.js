@@ -28,6 +28,7 @@ const SignUp = () => {
   function isValidEmail(email) {
     return /\S+@\S+\.\S+/.test(email);
   }
+
   function handleEmailChange(e) {
     setEmail(e.target.value);
     if (!isValidEmail(e.target.value)) {
