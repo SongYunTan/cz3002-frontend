@@ -19,7 +19,7 @@
 }
 
 .createGroup-navbar{
-    height: 90px;
+    height: 91px;
     width: 100%;
     outline: 1px solid #808e9b;
     display:flex; 
@@ -29,7 +29,7 @@
 }
 
 .createGroup-navbar #backicon{
-    font-size: 90px
+    font-size: 91px
 }
 
 .createGroup-navbar #backbtn{
@@ -130,6 +130,7 @@
 }
 
 .popup-enterNewName #title{
+    width: 500px;
     position: relative;
     left: 16px;
     top: -30px;
@@ -404,7 +405,7 @@
     width: 100%;
     height: 100%;
     border-radius: 10px;
-    font-size: 15px;
+    font-size: 70%;
     font-weight: bold;
     border: none;
     background: #1e272e;
@@ -415,7 +416,7 @@
 .createGroup-genreSelectName:hover{
     transform: scale(1.08);
     color: #a5b1c2;
-    font-size: 100%;
+    font-size: 80%;
     cursor: pointer;
 }
 

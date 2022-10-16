@@ -15,7 +15,7 @@
     position: relative;
     padding: 16px;
     width: 100%;
-    max-width: 500px;
+    max-width: 640px;
     border-radius: 10px;
     background-color: #7f8c8d;
 }
@@ -28,15 +28,12 @@
     border: 0px
 }
 
-.popup-close .popup-closeIcon{
-    font-size: 50px
-}
-
-.popup-closeIcon{
+.popup-close #closeIcon{
+    font-size: 50px;
     color:white;
 }
 
-.popup-closeIcon:hover{
+.popup-close #closeIcon:hover{
     background: #3d3d3d;
     color: #d2dae2;
     transition: all 0.2s ease-out;

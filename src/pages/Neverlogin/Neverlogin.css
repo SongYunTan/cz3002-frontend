@@ -1,0 +1,38 @@
+.neverLoginPage{
+    height: 100%;
+    width: 100%;
+    background: #1e272e;
+    font-weight: bold;
+    display:flex; 
+    flex-direction:column;
+    justify-content: flex-start;
+    align-items: center;
+    color: aliceblue;
+}
+
+.neverLoginPage #imagelogo{
+    transform: scale(0.8);
+}
+
+.neverLoginPage #ltext{
+    font-size: 30px;
+}
+
+.neverLogin-nav{
+    width: 200px;
+    height: 35px;
+    padding: 20px;
+    border-radius: 10px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    background: rgb(0, 132, 255);
+    color: aliceblue;
+}
+
+.neverLogin-nav:hover{
+    background: aliceblue;
+    color: #1e272e;
+}
+

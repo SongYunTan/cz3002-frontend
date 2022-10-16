@@ -3,13 +3,16 @@ import { Link } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RateReviewIcon from '@mui/icons-material/RateReview';
-import {Grouplist} from './Grouplist';
+import GroupsIcon from '@mui/icons-material/Groups';
+import LogoutIcon from '@mui/icons-material/Logout';
+
 import './Navbar.css';
 
-function Navbar() {
+const Navbar = (props) => {
 
+  /*============================= Resize Window===================================== */
   const [click, setClick] = useState(false);
-  const [button, setButton] = useState(true);
+  const [, setButton] = useState(true);
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -27,13 +30,27 @@ function Navbar() {
   }, []);
 
   window.addEventListener('resize', showButton);
+  /*============================================================================== */
+
+  /*=============================Update Group Id===================================== */
+  const [, setCurrentGroup] = useState();
+  const updateGroup = React.useCallback((val) => {
+    if (sessionStorage.getItem("groupname") !== val){
+      setCurrentGroup(val);
+      sessionStorage.setItem("groupname" , val);
+    }
+  }, []);
+  /*========================================================================== */
 
   return (
     <nav className='navbar'>
         <div className='navbar-container'>
 
-          <Link to='/' onClick={closeMobileMenu}>
-            <img alt="logo" className='navbar-logo' src="images/logo.png"/>
+          <Link to='/Home' onClick={ () => {
+              closeMobileMenu();
+              sessionStorage.setItem("groupname" , null);
+              }}>
+            <img data-testid="image-logo" alt="logo" id='imagelogo' src="images/logo.png"/>
           </Link>
 
           <div className='menu-icon' onClick={handleClick}>
@@ -42,42 +59,70 @@ function Navbar() {
 
           <div className={click ? 'nav-menu active' : 'nav-menu'}>
 
-            <Link to='/Profile' className='userProfile-mobile' onClick={closeMobileMenu}>
-            <div className='imageSize'><img alt="profile" src="images/profile.png" id='profileImg'/></div>
-            <div className='userSize' id='username'>Username</div>
+            <Link to='/Uprofile' className='userProfile-mobile' onClick={ () => {
+              closeMobileMenu();
+              sessionStorage.setItem("groupname" , null);
+              }}>
+            <img alt="profile" src="images/profile.jpg" id='profileImage'/>
+            <div data-testid="username-mobile" id='username'>{props.username}</div>
             </Link>
 
-            <Link to='/home' className='nav-links' id={window.location.pathname === '/' ? "active": ""} onClick={closeMobileMenu}>
+            <Link to='/Home' className='nav-links' id={window.location.pathname === '/Home' ? "active": ""} onClick={ () => {
+              closeMobileMenu();
+              sessionStorage.setItem("groupname" , null);
+              }}>
             <div id='icon'><HomeIcon/></div>
             <div id='title'>Home</div>
             </Link>
 
-            <span className='group-header'>GROUPS</span>
+            <span id='header'>GROUPS</span>
             <div className='userlistOfGroups'>
-            {Grouplist.map((val, key) =>{
+            {props.groups.map((val,key) =>{
                 return (
-                <Link to='/Swipe' className='nav-links' id={window.location.pathname === '/Swipe' ? "active": ""} onClick={closeMobileMenu}>
-                <div id='icon'>{val.icon}</div>
-                <div id='title'>{val.title}</div>
+                <Link key={key} to='/Swipe' className='nav-links' id={val === sessionStorage.getItem("groupname") ? "active": ""} 
+                onClick={() => {
+                  closeMobileMenu();
+                  updateGroup(val);
+                }} >
+                <div id='icon'><GroupsIcon/></div>
+                <div id='title'>{val}</div>
                 </Link>)
               })
             }
             </div>
 
-            <Link to='/Create' className='nav-links' id={window.location.pathname === '/Create' ? "active": ""} onClick={closeMobileMenu}>
+            <Link to='/Create' className='nav-links' id={window.location.pathname === '/Create' ? "active": ""} onClick={ () => {
+              closeMobileMenu();
+              sessionStorage.setItem("groupname" , null);
+              }}>
             <div id='icon'><AddCircleIcon/></div>
             <div id='title'>Create</div>
             </Link>
 
-            <Link to='/review' className='nav-links' id={window.location.pathname === '/review' ? "active": ""} onClick={closeMobileMenu}>
+            <Link to='/Review' className='nav-links' id={window.location.pathname === '/Review' ? "active": ""} onClick={ () => {
+              closeMobileMenu();
+              sessionStorage.setItem("groupname" , null);
+              }}>
             <div id='icon'><RateReviewIcon/></div>
             <div id='title'>Add Review</div>
             </Link>
+
+            <Link to='/' className='userProfile-mobileLogout' onClick={ () => {
+              closeMobileMenu();
+              sessionStorage.removeItem("groupname");
+              sessionStorage.removeItem("id");
+              }}>
+            <LogoutIcon id='logouticon'/>
+            <div id='title'>Logout</div>
+            </Link>
           </div>
 
-          <Link to='/profile' className='userProfile-web' onClick={closeMobileMenu}>
-            <div className='imageSize'><img alt="profile" src="images/profile.png" id='profileImg'/></div>
-            <div className='userSize' id='username'>Username</div>
+          <Link to='/Uprofile' className='userProfile-web' onClick={ () => {
+              closeMobileMenu();
+              sessionStorage.setItem("groupname" , null);
+              }}>
+            <img alt="profile" src="images/profile.jpg" id='profileImage'/>
+            <div data-testid="username-web" id='username'>{props.username}</div>
           </Link>
 
         </div>

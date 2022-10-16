@@ -28,9 +28,10 @@
     margin-bottom: -30px;
 }
 
-.signupPage #errMsg {
+.signupPage #pwSame {
     font-size: 15px;
     color: red;
+    margin-bottom: -30px;
 }
 
 .signupPage-form{

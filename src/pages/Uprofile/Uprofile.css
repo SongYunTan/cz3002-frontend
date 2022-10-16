@@ -1,4 +1,4 @@
-.profile{
+.profilePage{
     height: 100%;
     width: 100%;
     background: #1e272e;
@@ -9,8 +9,7 @@
     align-items: center;
 }
 
-
-.profile-container{
+.profilePage-container{
     height: 100%;
     width: 100%;
     display:flex; 
@@ -18,21 +17,30 @@
     justify-content: flex-start;
     align-items: center;
     outline: 1px solid #808e9b;
-    ;
 }
-.profile-navbar{
-    height: 90px;
+
+.profilePage-navbar{
+    height: 91px;
     width: 100%;
     outline: 1px solid #808e9b;
+    display:flex; 
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profilePage-navbarContent{
     display:flex; 
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
 }
-.profile-navbar .profile-backicon{
-    font-size: 90px
+
+.profilePage-navbarContent #backicon{
+    font-size: 91px
 }
-.profile-backbtn{
+
+.profilePage-navbarContent #backbtn{
     width: 200px;
     height: 100%;
     color:white;
@@ -43,23 +51,127 @@
     align-items: center;
     border: none;
 }
-.profile-backbtn:hover{
+
+.profilePage-navbarContent #backbtn:hover{
     background-color: #d2dae2;
     color: #1e272e;
     transition: all 0.2s ease-out;
     cursor: pointer;
     transform: scale(1.08);
 }
-.profile-header{
+
+.profilePage-navbarContent #header{
     margin-left: 10px;
     font-size: 40px;
     color: white;
 }
 
-.profile-content{
+.profilePage-navbarLogout{
+    display:flex; 
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.profilePage-navbarLogout #logouticon{
+    font-size: 91px
+}
+
+.profilePage-navbarLogout #logoutbtn{
+    width: 200px;
+    height: 100%;
+    color:white;
     display: flex;
     flex-direction: row;
     justify-content: center;
+    background: transparent;
+    align-items: center;
+    border: none;
+}
+
+.profilePage-navbarLogout #logoutbtn:hover{
+    background-color: #d2dae2;
+    color: #1e272e;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+    transform: scale(1.08);
+}
+
+.profilePage-navbarLogout #header{
+    margin-left: 10px;
+    font-size: 40px;
+    color: white;
+    margin-right: 40px;
+}
+
+.profilePage-content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    outline: 1px solid #808e9b;
+}
+
+.profilePage-picture{
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    display: inline-block; 
+    position: relative;
+    overflow: hidden;
+}
+
+.profilePage-picture #profilepic{
+    height: 100%;
+    width: auto;
+}
+
+.profilePage-userInfo{
+    height: 100%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: left;
+    color: aliceblue;
+    margin-top: 60px;
+}
+
+.profilePage-userInfoContent{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 125%;
+    margin-top: -20px;
+}
+
+.profilePage-userInfoContent #infotitle{
+    width: 200px;
+}
+
+.profilePage-userInfoContent .profilePage-editButton{
+    width: 80px;
+    height: 100%;
+    color:aliceblue;
+    background: transparent;
+    border: none;
+}
+
+.profilePage-editButton #editicon{
+    font-size: 40px;
+}
+
+.profilePage-editButton:hover{
+    transform:scale(1.2);
+    cursor: pointer;
+    color: #d2dae2;
 }
 
 .infocontent{
@@ -72,69 +184,28 @@
     color: white;
 }
 
-
-.infoline{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    height: 100px;
-}
-
-.infotitle{
-    margin-left: 80px;
-}
-
-.titlecontent{
-    margin-left: 20px;
-}
-
-.infocontent.editgnicon{
-    font-size: 40px
-}
-
-.info-editbtn{
-    width: 200px;
-    height: 90px;
-    color:white;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    background: transparent;
-    align-items: center;
-    border: none;
-}
-
-.info-editbtn:hover{
-    color: #d2dae2;
-    transition: all 0.2s ease-out;
-    cursor: pointer;
-    transform: scale(1.08);
-}
-
 .popupwindow{
-    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: left;
-    width: 50%
+    padding: 10px;
 }
 
-.popuptitle{
+.popupwindow #title{
     position: relative;
+    width: 80%;
     left: 16px;
     top: -30px;
-    font-size: 30px;
+    font-size: 40px;
     color: #1e272e;
 }
 
-.inputbox{
+.popupwindow #inputbox{
     position: relative;
     left: 16px;
     bottom: 16px;
-    font-size: 30px;
+    font-size: 40px;
     width: 70%;
     border: none;
     border-radius: 10px;
@@ -142,11 +213,11 @@
     background: #1e272e;
 }
 
-.submitButton .submit{
+.profilePage-submitButton #circleIcon{
     font-size: 60px;
-}  
+}
 
-.submitButton{
+.profilePage-submitButton{
     margin-left: 50px;
     color:white;
     background: transparent;
@@ -154,19 +225,9 @@
     border: none;
 }
 
-.submitButton:hover{
+.profilePage-submitButton:hover{
     color:#44bd32;
     transition: all 0.2s ease-out;
     cursor: pointer;
     transform: scale(1.08);
-}
-
-.picture{
-    position: relative;
-    top: 25%;
-
-}
-.profilepic{
-    border-radius: 50%;
-
 }

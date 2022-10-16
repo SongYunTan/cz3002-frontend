@@ -43,21 +43,22 @@
     text-align: center;
 }
 
-.homepage-creategroup #create{
+.homepage-createbutton{
     width: 150px;
-    height: 40px;
+    height: 50px;
     font-size: 150%;
-    color: #fff;
     display:flex; 
     flex-direction:row;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
+    color: #fff;
+    text-decoration: none;
     padding: 10px;
     background-color: rgb(0, 132, 255);
     border-radius: 10px;
 }
 
-.homepage-creategroup #create:hover {
+.homepage-createbutton:hover {
     background: #007cf8;
     color: #535252;
     transition: all 0.2s ease-out;
@@ -172,6 +173,12 @@
     margin-top: 10px;
 }
 
+.homepage-reviewbutton:hover{
+    transform: scale(1.08);
+    cursor: pointer;
+    color: #1e272e;
+}
+
 @media screen and (max-width: 960px){
     .homePage{
         margin: 0;
@@ -205,8 +212,8 @@
         text-align: left;
     }
 
-    .homepage-creategroup #create{
-        margin-left: 50px;
+    .homepage-createbutton{
+        font-size: 100%;
     }
 
     .homepage-allGroups{

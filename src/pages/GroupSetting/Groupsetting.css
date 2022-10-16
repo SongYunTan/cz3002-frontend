@@ -1,4 +1,4 @@
-.groupSetting-page{
+.groupSettingPage{
     height: 100%;
     width: 100%;
     display:flex; 
@@ -8,7 +8,7 @@
     background:#1e272e;
 }
 
-.groupSetting-container{
+.groupSetting-Container{
     height: 100%;
     width: 100%;
     display:flex; 
@@ -17,21 +17,21 @@
     align-items: center;
 }
 
-.groupSetting-bar{
+.groupSetting-groupNavbar{
     display: none;
 }
 
 .groupSetting-navbar{
-    height: 90px;
+    height: 91px;
     width: 100%;
     outline: 1px solid #808e9b;
 }
 
-.groupSetting-navbar .backicon{
-    font-size: 90px
+.groupSetting-navbar #backicon{
+    font-size: 91px
 }
 
-.groupSetting-backbtn{
+.groupSetting-navbar #backbtn{
     width: 200px;
     height: 100%;
     color:white;
@@ -43,7 +43,7 @@
     border: none;
 }
 
-.groupSetting-backbtn:hover{
+.groupSetting-navbar #backbtn:hover{
     background-color: #d2dae2;
     color: #1e272e;
     transition: all 0.2s ease-out;
@@ -61,27 +61,51 @@
     outline: 1px solid #808e9b;
 }
 
-.groupSetting-title{
+.groupSetting-membertitle{
     width: 100%;
     height: 100px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     color: white;
-    margin-right: 10px;
 }
 
-.member-title{
+.groupSetting-membertitle #title{
     margin-left: 80px;
+    margin-right: 50px;
 }
 
-.groupSetting-details .editicon{
+.groupSetting-details #editicon{
     font-size: 50px;
 }
 
 .groupSetting-editbtn{
-    width: 200px;
+    width: 20px;
+    height: 90px;
+    color:white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background: transparent;
+    align-items: center;
+    border: none;
+    margin-right: 70px;
+}
+
+.groupSetting-editbtn:hover{
+    color: #d2dae2;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+    transform: scale(1.08);
+}
+
+.groupSetting-details #deleteicon{
+    font-size: 50px;
+}
+
+.groupSetting-deletebtn{
+    width: 20px;
     height: 90px;
     color:white;
     display: flex;
@@ -92,14 +116,14 @@
     border: none;
 }
 
-.groupSetting-editbtn:hover{
+.groupSetting-deletebtn:hover{
     color: #d2dae2;
     transition: all 0.2s ease-out;
     cursor: pointer;
     transform: scale(1.08);
 }
 
-.member-pic{
+.groupMemberlist{
     width: 750px;
     height: 150px;
     padding: 0px;
@@ -115,7 +139,7 @@
     cursor: grab;
 }
 
-.member-pic::-webkit-scrollbar {
+.groupMemberlist::-webkit-scrollbar {
     display: none;
 }
 
@@ -125,19 +149,24 @@
     flex-direction: column;
     justify-content:center;
     align-items: center;
+    cursor: pointer;
 }
 
-.memberInfo #memberImg{
+.memberInfo #memberImage{
     height: 100px;
     width: 100px;
     overflow:hidden;
     border-radius: 50%;
 }
 
-.memberInfo #memberusername{
+.memberInfo #memberUsername{
     margin-top: 10px;
     font-size: 20px;
     font-weight: bold;
+}
+
+.memberInfo:hover{
+    transform: scale(1.08);
 }
 
 .groupSetting-genre{
@@ -151,8 +180,19 @@
     color: white;
 }
 
-.genre-title{
+.groupSetting-genretitle{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+}
+
+.groupSetting-genretitle #title{
     margin-left: 80px;
+    margin-right: 80px;
 }
 
 .genre-list{
@@ -197,10 +237,10 @@
     flex-direction: row;
     justify-content: right;
     align-items: right;
-    margin-top: -10%;
+    margin-top: -5%;
 }
 
-.groupSetting-deletebtn{
+.groupSetting-delete #deleteBtn{
     height: 40px;
     width: 150px;
     border-radius: 10px;
@@ -211,7 +251,7 @@
     font-weight: bold;
 }
 
-.groupSetting-deletebtn:hover{
+.groupSetting-delete #deleteBtn:hover{
     background: #fc5c65;   
     color: #1e272e;
     transform: scale(1.08);
@@ -219,20 +259,133 @@
     transition: all 0.2s ease-out;
 }
 
+.groupSetting-searchAllUser{
+    font-size: 40px;
+    width: 70%;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background: #1e272e;
+}
+
+.groupSetting-allUserList{
+    width: 95%;
+    height: 300px;
+    overflow-y: auto;
+}
+
+.groupSetting-allUserList::-webkit-scrollbar{
+    display: none;
+}
+
+.groupSetting-userInfo{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border: none;
+    background: transparent;
+    padding: 10px;
+    border-bottom: 1px solid gray;
+}
+
+.groupSetting-userInfo #userImage{
+    height: 70px;
+    width: 70px;
+    overflow:hidden;
+    border-radius: 50%;
+}
+
+.groupSetting-userInfo #userName{
+    color: white;
+    margin-left: 10px;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.groupSetting-userInfo:hover{
+    margin-left: 20px;
+    background: #1e272e;
+    transform: scale(1.08);
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+}
+
+.groupSetting-selectingGenre{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: right;
+}
+
+.groupSetting-selectingGenre #title{
+    width: 500px;
+    position: relative;
+    left: 16px;
+    top: -30px;
+    font-size: 40px;
+    color: #1e272e;
+}
+
+.groupSetting-genreList{
+    margin-top: -50px;
+    list-style: none;
+    width: 80%;
+    height: 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow-y: auto;
+}
+
+.groupSetting-genreList::-webkit-scrollbar{
+    display: none;
+}
+
+.groupSetting-genreRow{
+    width: 20%;
+    height: 40px;
+    padding: 10px;
+}
+
+.groupSetting-genreButton{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    font-size: 70%;
+    font-weight: bold;
+    border: none;
+    background: #1e272e;
+    color: white;
+    transition: 0.1s ease-in-out;
+}
+
+.groupSetting-genreButton:hover{
+    transform: scale(1.08);
+    color: #a5b1c2;
+    font-size: 80%;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 960px){
 
-    .groupSetting-page{
+    .groupSettingPage{
         flex-direction:column;
         justify-content: center;
         align-items: center;
     }
 
-    .groupSetting-container{
+    .groupSetting-Container{
         height: 90vh;
         width: 100vw;
     }
 
-    .groupSetting-bar{
+    .groupSetting-groupNavbar{
         height: 10vh;
         width: 100vw;
         display: block;
@@ -247,18 +400,18 @@
         display: none;
     }
 
-    .member-title{
+    .groupSetting-title #title{
         margin-left: 40px;
     }
 
-    .member-pic{
+    .groupMemberlist{
         width: 70%;
         margin-left: 40px;
         height: 150px;
         cursor: grab;
     }
 
-    .genre-title{
+    .groupSetting-genre #title{
         margin-left: 40px;
     }
 
@@ -268,13 +421,14 @@
         width: 70%;
     }
 
+    .groupSetting-genre{
+        margin-top: 10px;
+    }
+
     .genreInfo #genrename{
         margin-top: 5%;
     }
 
-    .groupSetting-genre{
-        margin-top: 10px;
-    }
 }
 
 

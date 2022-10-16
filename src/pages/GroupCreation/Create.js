@@ -1,15 +1,16 @@
 import React, {useState,useRef,useEffect} from 'react'
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import EditIcon from '@mui/icons-material/Edit';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import './Create.css';
+
+import axios from 'axios';
 import Popup from '../../components/Popup';
 import Navbar from '../../components/Navbar';
-import {listOfGenre} from './ListOfGenre';
+import Neverlogin from '../Neverlogin/Neverlogin';
+import './Create.css';
 
 const Create = () => {
 
@@ -47,90 +48,132 @@ const Create = () => {
   })
   /* ================================================================ */
 
-  /* =========================Get Genre================================ */
-  const [allgenre, setAllgenre] = useState([])
+  /* =========================API Calls================================ */
+  const [currentUser, setCurrentUser] = useState(
+  {
+  "username":"",
+  "email":"",
+  "groups":[],
+  });
 
-  const getGenre = async () => {
+  const [allUsers, setAllUsers] = useState([]);
 
-    await axios.get(
-      'http://127.0.0.1:5000/get_genres',
-      {
+  const [allgenre, setAllgenre] = useState([
+    {"name" : ""}
+  ]);
+
+  useEffect(() => {
+    let userid = sessionStorage.getItem("id");
+
+    const createGroup = async () =>{
+
+      try {
+        const response1 = await axios.get('http://127.0.0.1:5000/profile',
+        {
+        params: { id: userid },
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
-        },
-      },
-    ).catch((err) => {
-      console.log(err.message);
-    }).then((response)=> {
-      console.log(JSON.stringify(response.data, null, 4));
-      setAllgenre(response.data);
-    });
-  };
+          },
+        });
+  
+        const response2 = await axios.get('http://127.0.0.1:5000/get_users',
+        {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          },
+        });
+  
+        const response3 = await axios.get('http://127.0.0.1:5000/get_genres',
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+        });
+  
+        axios.all([response1, response2, response3])
+        .then(axios.spread((...responses) => {
+  
+          const responseOne = responses[0].data;
+          const responseTwo = responses[1].data;
+          const responseThree = responses[2].data;
+  
+          setCurrentUser(responseOne);
+          setAllUsers(responseTwo);
+          setAllgenre(responseThree);
+        }))
+      } catch (err) {
+        console.log(err.message);
+      }
+    };
+    createGroup();
+  }, []);
 
-  useEffect(() =>{
-    getGenre();
-  },[])
+  /* =========================Get Genre================================ */
+  const [genreState, changeState] = useState([]);
 
-  const Objects = [...allgenre.map((e) => {
-    e.toggled = false
-    e.updated = false
-    return e;
-  })];
-
-  const [genreState, changeState] = useState({
-    Objects
-  })
+  useEffect(() => {
+    const res = async () => {
+      const result = [...allgenre.map((e) => {
+        e.toggled = false
+        e.updated = false
+        return e;
+      })];
+      console.log(result);
+      changeState(result);
+    };
+    res();
+  }, [allgenre]);
 
   const toggleGenreActive = (index) => {
-    let array = [...genreState.Objects];
+    let array = [...genreState];
     array[index].toggled? array[index].toggled = false: array[index].toggled = true;
-    changeState({...genreState, Objects: array});
+    changeState(array);
   }
 
   const toggleGenreSelectedActive = (index) => {
-    let array = [...genreState.Objects];
+    let array = [...genreState];
     array[index].updated? array[index].updated = false: array[index].updated = true;
-    changeState({...genreState, Objects: array});
+    changeState(array);
   }
 
   const toggleGenreSelected = (index) => {
 
-    return genreState.Objects[index].updated ? 
+    return genreState[index].updated ? 
       "genreSelected-active" : "genreSelected-inactive";
   }
 
   const toggleGenreCancel = (index) => {
 
-    return genreState.Objects[index].updated ? 
+    return genreState[index].updated ? 
     "genreSelected-cancel-active" : "genreSelected-cancel-inactive";
   }
 
   const toggleGenreButton = (index) => {
 
-    return genreState.Objects[index].toggled ? 
+    return genreState[index].toggled ? 
     "createGroup-genreSelectName genreSelect-active" : "createGroup-genreSelectName genreSelect-inactive";
   }
 
   const applyGenreUpdate = () => {
 
     setButton1(true)
-    const newState = genreState.Objects.map(obj => {
+    const newState = genreState.map(obj => {
       return obj.updated ? {...obj, toggled: true} : {...obj, toggled: false};
     });
-
-    changeState({...genreState, Objects: newState});
+    changeState(newState);
   };
 
   const applyGenre = () => {
-    const newState = genreState.Objects.map(obj => {
-
+    const newState = genreState.map(obj => {
       return obj.toggled ? {...obj, updated: true} : {...obj, updated: false};
     });
 
     setTimeout(() => {
       setButton1(false)
-      changeState({...genreState, Objects: newState});
+      changeState(newState);
     }, 2000)
   };
   /* ================================================================ */
@@ -159,30 +202,6 @@ const Create = () => {
   const[memberarray, setMemberArray] = useState([]);
   const[searchUsername, setUsername] = useState("");
 
-  const [allUsers, setAllUsers] = useState([])
-
-  const getUsers = async () => {
-
-    await axios.get(
-      'http://127.0.0.1:5000/get_users',
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-      },
-    ).catch((err) => {
-      console.log(err.message);
-    }).then((response)=> {
-      console.log(JSON.stringify(response.data, null, 4));
-      setAllUsers(response.data);
-    });
-  };
-
-  useEffect(() =>{
-    getUsers();
-  },[])
-
   const checkItemExist = (arr,username) => {
     let find = arr.find(
       (object) => object.username === username
@@ -204,12 +223,48 @@ const Create = () => {
   }
   /* ================================================================ */
 
+  /* =========================Create Group================================ */
+  let navigate = useNavigate(); 
+  const routeChange = () =>{ 
+    let path = '/Home'; 
+    navigate(path);
+  }
+
+  const creatingGroup = async (owner, groupname, genres, members) => {
+    try {
+      await axios.post( 'http://127.0.0.1:5000/new_group',
+      {"Username of owner": owner,
+      "groupName": groupname,
+      "genre": genres,
+      "members": members
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+      },
+      ).then((response)=> {
+        console.log(JSON.stringify(response.data, null, 4));
+        routeChange();
+      });
+    } catch(err) {
+      console.log(err.message);
+    }
+  };
+  /* ========================================================================= */
+  
+  let c = <Navbar />
+  const p = React.cloneElement(c, 
+  { username: currentUser.username, email: currentUser.email, groups: currentUser.groups });
+    
   return (
-    <div className="createGroupPage">
-      <Navbar />
+    sessionStorage.getItem("id") !== null ?
+      (<div className="createGroupPage">
+      { p }
       <div className='createGroup-Container'>
         <div className='createGroup-navbar'>
-          <Link to='/' id="backbtn">
+          <Link to='/Home' id="backbtn">
           <KeyboardBackspaceIcon id='backicon'/>
           </Link>
           <div id='header'>Create New Group</div>
@@ -247,7 +302,7 @@ const Create = () => {
                 {memberarray.map((val, key) =>{
                   return (
                   <button key={key} className='createGroup-memberInfo'>
-                  <img alt="member Profile" src="images/profile.png" id='memberImage'/>
+                  <img alt="member Profile" src="images/profile.jpg" id='memberImage'/>
                   <div id='userName'>{val.username}</div>
                   </button>)
                   })
@@ -263,15 +318,15 @@ const Create = () => {
                 className="createGroup-searchAllUser" onChange={e => {setUsername(e.target.value)}}></input>
                 <div className='createGroup-allUserList'>
                     {allUsers.filter((val) =>{
-                      if (searchUsername === ""){
+                      if (searchUsername === "" && val.username !== currentUser.username){
                         return val
-                      } else if (val.username.toLowerCase().includes(searchUsername.toLowerCase())){
+                      } else if (val.username !== currentUser.username && val.username.toLowerCase().includes(searchUsername.toLowerCase())){
                         return val
                       } else return null
                     }).map((val, key) =>{
                       return (
                       <button key={key} className='createGroup-userInfo' onClick={() => addedMember(val.username)}>
-                      <img alt="createGroup-user" src="images/profile.png" id='userImage'/>
+                      <img alt="createGroup-user" src="images/profile.jpg" id='userImage'/>
                       <div id='userName'>{val.username}</div>
                       </button>)
                       })
@@ -291,7 +346,7 @@ const Create = () => {
               <div className='createGroup-selectingGenre'>
                 <button id='addGenre' onClick={applyGenre}>Apply Changes</button>
                 <ul className='createGroup-genreList'>
-                  {genreState.Objects.map((val, key) =>{
+                  {genreState.map((val, key) =>{
                       return (
                       <li key={key} className='createGroup-genreRow'>
                       <button
@@ -306,7 +361,7 @@ const Create = () => {
           </div>
 
           <div className='createGroup-selectedGenre'>
-            {genreState.Objects.map((val, key) =>{
+            {genreState.map((val, key) =>{
               return (
                 <div key={key} className='createGroup-genreSelected-row'>
                 <button
@@ -320,14 +375,19 @@ const Create = () => {
           </div>
 
           <div className='createGroup-buttons'>
-            <button id="cancelbtn">Cancel</button>
-            <button id="createbtn">Create Group</button>
+            <button id="cancelbtn" onClick={ routeChange }>Cancel</button>
+            <button id="createbtn" onClick={ () => 
+              creatingGroup(
+              currentUser.username,
+              GroupName,
+              [...genreState.filter((val) => val.updated === true).map((e) => {return e.name})],
+              [...memberarray.map((val) => {return val.username})])
+            }>Create Group</button>
           </div>
-
         </div>
       </div>
-    </div>
-  )
+    </div>) : (<Neverlogin />)
+    );
 }
 
 export default Create

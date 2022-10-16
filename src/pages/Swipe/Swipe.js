@@ -1,70 +1,112 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import { Rating } from 'react-simple-star-rating'
+
+import axios from 'axios';
+import Neverlogin from '../Neverlogin/Neverlogin';
 import GroupNavbar from '../../components/GroupNavbar';
 import Navbar from '../../components/Navbar';
 import {Reviewlist} from './Reviewlist';
-import { Rating } from 'react-simple-star-rating';
-import { useGlobalState } from '../../state';
 import './Swipe.css';
-import axios from 'axios';
 
 const Swipe = () => {
-  const [movie, setMovie] = useState([]);
-  const [username] = useGlobalState("globalUsername"); 
 
-  const getData = async () => {
-
-    await axios.post(
-      'http://127.0.0.1:5000/get_title',
-      {username, groupName: "test"},
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-      },
-    ).catch((err) => {
-      console.log(err.message);
-    }).then((response)=> {
-      console.log(JSON.stringify(response.data, null, 4));
-      setMovie(response.data);
-    });
-  };
+  /*=============================get User Info===================================== */  
+  const [currentUser, setCurrentUser] = useState(
+  {"username":"",
+    "email":"",
+    "groups":[]
+  });
 
   useEffect(() => {
-    getData();
-  }, []);
+    let userid = sessionStorage.getItem("id");
+    let groupname = sessionStorage.getItem("groupname");
 
+    const getData = async () => {
 
-  const handleInterestClick = async (e) => {
-    await axios.post(
-      'http://127.0.0.1:5000/indicate_interest',
-      {username, groupName: "test", title: movie.random_title, interest:e.target.value, movie_id:movie.movie_id},
-      {
+      try{
+        const response1 = await axios.get( 'http://127.0.0.1:5000/profile',
+        {
+        params: { id: userid },
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
+          },
+        });
+
+        const response2 = await axios.get( 'http://127.0.0.1:5000/get_title',
+        {
+        params:  {id: userid, groupName: groupname},
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          },
+        });
+
+        axios.all([response1, response2])
+        .then(axios.spread((...responses) => {
+
+          const responseOne = responses[0].data;
+          const responseTwo = responses[1].data;
+
+          setCurrentUser(responseOne);
+          setMovie(responseTwo);
+        }))
+      } catch (err) {
+        console.log(err.message);
+      };
+    };
+    getData();
+  }, []);
+  /*============================================================================= */
+
+  /*=============================Indicating Interest===================================== */  
+  const [movie, setMovie] = useState([{
+    "title" :"",
+    "movie_id": "",
+    "url" : ""
+  }]);
+  
+  const handleInterestClick = async (e) => {
+    let groupname = sessionStorage.getItem("groupname");
+
+    try{
+      await axios.post(
+        'http://127.0.0.1:5000/indicate_interest',
+        {username: currentUser.username, groupName: groupname, title: movie.random_title, interest: e.target.value, movie_id: movie.movie_id },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
         },
-      },
-    ).catch((err) => {
+      ).then((response)=> {
+        console.log(JSON.stringify(response.data, null, 4));
+      })
+    }
+    catch(err) {
       console.log(err.message);
-    }).then((response)=> {
-      console.log(JSON.stringify(response.data, null, 4));
-      getData();
-    });
+    };
   };
+  
+  /*============================================================================= */
+  
+  let c = <Navbar />
+  const p = React.cloneElement(c, 
+  { username: currentUser.username, email: currentUser.email, groups: currentUser.groups });
 
   return (
-    <div className='swipe'>
-      <Navbar />
-      <div className='groupSwipe'>
-        <div className='groupNav-bar'><GroupNavbar /></div>
-        <div className="groupSwipe-content">
-          <img className='moviePoster' alt='movie poster' src={movie.image_url}></img>
+    sessionStorage.getItem("id") !== null ?
+      (<div className='Swipe'>
+      { p }
+      <div className='Swipe-Container'>
+        <div className='Swipe-groupNavbar'><GroupNavbar /></div>
+        <div className="SwipeContent">
+          <img id='moviePoster' alt='movie poster' src={movie.image_url}></img>
           <div className='buttons'>
-            <input className="noButton" type="button" value="no" onClick={handleInterestClick}/>
-            <input className="yesButton" type="button" value="yes" onClick={handleInterestClick}/>
+            <input id="no" type="button" value="no" onClick={handleInterestClick}/>
+            <input id="yes" type="button" value="yes" onClick={handleInterestClick}/>
           </div>
-          <a href="/" className='skipMovie'>Skip</a>
+          <a href="/" id='skip'>Skip</a>
           <div className='reviewSection'>
             <span id='reviewPart'>REVIEWS</span>
             <ul className='reviews'>
@@ -72,7 +114,7 @@ const Swipe = () => {
                   return (
                   <li key={key} className='reviewRow'>
                   <div className='userInfo'>
-                  <img alt="profile" src={val.image} id='profileImg'/>
+                  <img id='profile' alt="profile" src={ 'images/profile.jpg' }/>
                   <div id='username'>{val.username}</div>
                   </div>
                   <div className= 'userReview'>
@@ -86,8 +128,8 @@ const Swipe = () => {
           </div>
         </div>
         </div>
-    </div>
-  )
+    </div>) : (<Neverlogin />)
+    );
 }
 
 export default Swipe
