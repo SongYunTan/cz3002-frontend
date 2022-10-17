@@ -5,7 +5,6 @@ import axios from 'axios';
 import Neverlogin from '../Neverlogin/Neverlogin';
 import GroupNavbar from '../../components/GroupNavbar';
 import Navbar from '../../components/Navbar';
-import {Reviewlist} from './Reviewlist';
 import './Swipe.css';
 
 const Swipe = () => {
@@ -57,23 +56,15 @@ const Swipe = () => {
     };
     getData();
   }, []);
-
-  useEffect(() => {
-    if (movie.review.length===0) {
-      setReviews(false);
-    } else {
-      setReviews(true);
-    }
-  }, [movie]);
-
   /*============================================================================= */
 
   /*=============================Indicating Interest===================================== */  
-  const [movie, setMovie] = useState([{
+  const [movie, setMovie] = useState({
     "title" :"",
     "movie_id": "",
-    "url" : ""
-  }]);
+    "url" : "",
+    "review" : [[],[]]
+  });
 
   const [reviews, setReviews] = useState(false)
   
@@ -113,16 +104,23 @@ const Swipe = () => {
           },
         }).then((response)=> {
         console.log(JSON.stringify(response.data, null, 4));
-        setMovie(response);
+        setMovie(response.data);
       })
     }
     catch(err) {
       console.log(err.message);
     };
-  }
-  
+  };
+
+  useEffect(() => {
+    if (movie.review.length===0) {
+      setReviews(false);
+    } else {
+      setReviews(true);
+    }
+  }, [movie]);
   /*============================================================================= */
-  
+
   let c = <Navbar />
   const p = React.cloneElement(c, 
   { username: currentUser.username, email: currentUser.email, groups: currentUser.groups });
