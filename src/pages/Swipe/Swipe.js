@@ -81,12 +81,34 @@ const Swipe = () => {
         },
       ).then((response)=> {
         console.log(JSON.stringify(response.data, null, 4));
+        getNextMovie();
       })
     }
     catch(err) {
       console.log(err.message);
     };
   };
+  
+  const getNextMovie = async () => {
+    let userid = sessionStorage.getItem("id");
+    let groupname = sessionStorage.getItem("groupname");
+    try{
+      await axios.get( 'http://127.0.0.1:5000/get_title',
+        {
+        params:  {id: userid, groupName: groupname},
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          },
+        }).then((response)=> {
+        console.log(JSON.stringify(response.data, null, 4));
+        setMovie(response);
+      })
+    }
+    catch(err) {
+      console.log(err.message);
+    };
+  }
   
   /*============================================================================= */
   
