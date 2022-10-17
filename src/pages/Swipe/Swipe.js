@@ -57,6 +57,28 @@ const Swipe = () => {
     };
     getData();
   }, []);
+
+
+  useEffect(()=>  {
+    getMovieReviews();
+  }, [movie]);
+
+  const getMovieReviews = async () => {
+    await axios.post(
+      'http://127.0.0.1:5000/get-reviews',
+      {movie_title: movie.title},
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+      },
+    ).catch((err) => {
+      console.log(err)
+    }).then((response)=> {
+      console.log(response)
+    });
+  };
   /*============================================================================= */
 
   /*=============================Indicating Interest===================================== */  
