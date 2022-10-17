@@ -18,6 +18,8 @@ const Verify = () => {
   const email = location.state.email;
   const password = location.state.password;
 
+  console.log(id);
+  
   function handleCodeChange(e) {
     const result = e.target.value.replace(/\D/g, '');
     setCode(result);
@@ -34,45 +36,29 @@ const Verify = () => {
     setErr('')
     setIsLoading(true);
     setSuccess(false);
-    await axios.post(
-      'http://127.0.0.1:5000/verify-code',
-      {id, code},
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
+    try{
+      await axios.post(
+        'http://127.0.0.1:5000/verify-code',
+        {id, code},
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
         },
-      },
-    ).catch((err) => {
+      ).then((response)=> {
+        console.log(response)
+        if (response.status === 200) {
+          setSuccess(true);
+          setErr('')
+        }
+        setIsLoading(false);
+      });
+    }
+    catch (err) {
       setErr(err.message);
       setIsLoading(false);
-    }).then((response)=> {
-      console.log(response)
-      if (response.status === 200) {
-        setSuccess(true);
-      }
-      setIsLoading(false);
-    });
-  };
-
-  const resendCode = async (e) => {
-    setErr('')
-    e.preventDefault()
- 
-    await axios.post(
-      'http://127.0.0.1:5000/register',
-      {username, password, email},
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-      },
-    ).catch((err) => {
-      setErr(err.message);
-    }).then((response)=> {
-      console.log(JSON.stringify(response.data, null, 4));
-    });
+    }
   };
 
   return (
@@ -89,9 +75,6 @@ const Verify = () => {
           <div id='userInput'>
             <input id = "inputs" type='text' maxLength={6} value={code} onChange={handleCodeChange} />
           </div>
-          {/* <div className="verifyPage-resendCode">
-            <p id="resendCode" onClick={resendCode}>Resend Code</p>
-          </div> */}
           {isLoading===true && <Oval />}
           {success===true && <Link to="/" id="goLogin">Back to login</Link>}
         </form>

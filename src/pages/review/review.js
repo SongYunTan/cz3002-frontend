@@ -198,8 +198,7 @@ const Review = () => {
         </Popup>
       </div>
     </div>
-    
   );
-}
+};
 
 export default Review;
