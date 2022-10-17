@@ -50,18 +50,24 @@ describe("Review Page Component Testing", () =>{
 						expect(inputElement1.value).toBe(keyword);
 				});
 		});
-});
+	});
 
-describe("Submission Testing", () => {
+	describe("Popup Rendering Testing", () => {
+		test("Should Render Popup Element", async () => {
+				render(<MockReview />);
+				const addReviewBtn = screen.getByTestId('addReviewBtn');
+				fireEvent.click(addReviewBtn);
+				
+				const popupElement = screen.getByTestId('review-popup');
+				expect(popupElement).toBeInTheDocument();
+		});
+	});
 
+	describe("Submission Testing", () => {
 		describe("Input Fields Submission", () => {
 				test("Testing Search Movie", async () => {
 
-						render(
-							<BrowserRouter>
-								<MockReview/>
-							</BrowserRouter>
-						);
+						render(<MockReview/>);
 
 						const header = {
 								'Content-Type': 'application/json',
@@ -76,8 +82,37 @@ describe("Submission Testing", () => {
 						fireEvent.click(buttonElement);
 
 						expect(mockAxios.post).toHaveBeenCalledWith('http://127.0.0.1:5000/search_movie', 
-						{username:keyword}, {headers: header});
+						{movie:keyword}, {headers: header});
+
+						const divElement = screen.getByTestId('movieItem');
+            expect(divElement).toBeInTheDocument();
 				});
+
+				test("Testing Add Review", async () => {
+					window.sessionStorage.setItem('username', 'admin');
+          const username = window.sessionStorage.getItem("username");
+
+					render(<MockReview/>);
+
+					const header = {
+							'Content-Type': 'application/json',
+							'Accept': 'application/json'}
+							
+					const review = "Great Movie!";
+					const star = 4;
+					const title = "Fall"
+					const inputElement1 = screen.getByPlaceholderText('Review');
+					const inputElement2 = screen.getByTestId('star-rating');
+					
+					const buttonElement = screen.getByTestId('submitReviewButton');
+					
+					fireEvent.change(inputElement1, {target: {value: review}});
+					fireEvent.change(inputElement2, {target: {value: star}});
+					fireEvent.click(buttonElement);
+
+					expect(mockAxios.post).toHaveBeenCalledWith('http://127.0.0.1:5000/add_review', 
+					{username: username, title: title, star: star, review: review}, {headers: header});
+			});
 		});
 	});
 });

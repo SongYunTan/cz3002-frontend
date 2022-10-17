@@ -163,16 +163,16 @@ const Review = () => {
           <div id='header'>Add Review</div>        
         </div>
         <form className="reviewPage-searchbox">
-            <input type="movename" placeholder="Search Movies" id="input-box" value={movieName} onChange={handleMovieChange}/>
-            <input type='submit' value='Search' id='submit-box' onClick={handleSearchMovie}/>
+            <input type="movename" placeholder="Search Movies" id="input-box" data-testid="search-bar" value={movieName} onChange={handleMovieChange}/>
+            <input type='submit' value='Search' id='submit-box' data-testid="search-movies-btn" onClick={handleSearchMovie}/>
         </form>
         <div ref={ref} className="reviewPage-movieContent">
           {movies.map((val, key) =>{
               return (
-                <div key={key} className="movieItem">
+                <div key={key} className="movieItem" data-testid="movieItem">
                   <img className='matchesMoviePoster' alt='movie poster' src={val.url}></img>
                   <p id="title">{val.title}</p>
-                  <button className='addReviewBtn'
+                  <button className='addReviewBtn' data-testid="addReviewBtn"
                     onClick={() => handleAddReviewBtn(val.title)}>
                     Add Review
                   </button>
@@ -180,7 +180,7 @@ const Review = () => {
             })
           }
         </div>
-        <Popup trigger = {addReviewButton} setTrigger= {setAddReviewButton}>
+        <Popup trigger = {addReviewButton} setTrigger= {setAddReviewButton} data-testid="review-popup">
           <div className = "popup-addNewReview">
             <h3 id='title'>Add Review:</h3>
             <form className="addReviewPage-form">
@@ -188,9 +188,9 @@ const Review = () => {
                 <textarea placeholder='Review' id = "inputs" type='text' value={review} onChange={handleReviewChange} ></textarea>
               </div>
               <div id='inputstar'>
-              <Rating size={40} onClick={handleStarChange}></Rating>
+              <Rating size={40} onClick={handleStarChange} data-testid="star-rating"></Rating>
               </div>
-              <button type="submit" id="submitReviewButton" onClick={handleSubmitReview}>
+              <button type="submit" id="submitReviewButton" data-testid="submitReviewButton" onClick={handleSubmitReview}>
                 SUBMIT
               </button>
             </form>

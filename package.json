@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.0.0",
     "insert-css": "^2.0.0",
+    "jest-mock-axios": "^4.7.0-beta",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
