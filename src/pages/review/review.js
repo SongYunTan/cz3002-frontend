@@ -180,7 +180,8 @@ const Review = () => {
             })
           }
         </div>
-        <Popup trigger = {addReviewButton} setTrigger= {setAddReviewButton}>
+      </div>
+      <Popup trigger = {addReviewButton} setTrigger= {setAddReviewButton}>
           <div className = "popup-addNewReview">
             <h3 id='title'>Add Review:</h3>
             <form className="addReviewPage-form">
@@ -196,7 +197,6 @@ const Review = () => {
             </form>
           </div>
         </Popup>
-      </div>
     </div>
     
   );
