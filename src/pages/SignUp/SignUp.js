@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 
 import axios from 'axios';
@@ -17,6 +17,10 @@ const SignUp = () => {
   const [emailValid, setEmailValid] = useState(null);
   const [success, setSuccess] = useState(false);
   const [userID, setUserID] = useState('')
+
+  useEffect(() =>{
+    routeChange();
+  },[userID])
 
   let navigate = useNavigate();
   const routeChange = () =>{ 
@@ -66,7 +70,6 @@ const SignUp = () => {
         console.log(JSON.stringify(response.data, null, 4));
         setSuccess(true);
         setUserID(response.data.id);
-        routeChange();
       });
     } catch (err) {
       setErr(err.message);
