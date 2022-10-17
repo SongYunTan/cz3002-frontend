@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 
 import axios from 'axios';
 import usePasswordToggle from '../../components/usePasswordToggle';
@@ -14,10 +14,26 @@ const SignUp = () => {
   const [password2, setPassword2] = useState('');
   const [PasswordInputType2, ToggleIcon2] = usePasswordToggle();
   const [err, setErr] = useState('');
+  const [emailValid, setEmailValid] = useState(null);
   const [success, setSuccess] = useState(false);
+  const [userID, setUserID] = useState('')
 
+  let navigate = useNavigate();
+  const routeChange = () =>{ 
+    let path = `/Verify`; 
+    navigate(path, { state: { id: userID, username: username, password: password1, email: email}});
+  }
+
+  function isValidEmail(email) {
+    return /\S+@\S+\.\S+/.test(email);
+  }
   function handleEmailChange(e) {
     setEmail(e.target.value);
+    if (!isValidEmail(e.target.value)) {
+      setEmailValid(false);
+    } else {
+      setEmailValid(null);
+    }
   }
 
   function handleUsernameChange(e) {
@@ -46,9 +62,11 @@ const SignUp = () => {
             Accept: 'application/json',
           },
         },
-      ).then((response)=> {
+      ).then((response) => {
         console.log(JSON.stringify(response.data, null, 4));
         setSuccess(true);
+        setUserID(response.data.id);
+        routeChange();
       });
     } catch (err) {
       setErr(err.message);
@@ -67,6 +85,9 @@ const SignUp = () => {
         </div>
 
         <form className="signupPage-form">
+            <div id="errMsg">
+              {emailValid===false && <p>Please input a valid email.</p>}
+            </div>
             <div id="userInput">
               <input placeholder='Email' id = "inputs" type='text' value={email} onChange={handleEmailChange} required/>
             </div>

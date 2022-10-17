@@ -22,6 +22,12 @@
     margin-bottom: 5px;
 }
 
+.signupPage #errMsg {
+    font-size: 15px;
+    color: red;
+    margin-bottom: 5px;
+}
+
 .signupPage #successSignup {
     font-size: 15px;
     color: green;
