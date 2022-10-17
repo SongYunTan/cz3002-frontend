@@ -5,10 +5,7 @@ import { Link } from 'react-router-dom';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import axios from 'axios';
 import Popup from '../../components/Popup';
-import { StarRatingInput, css } from 'react-star-rating-input';
-import insertCss from 'insert-css'
-
-insertCss(css)
+import { Rating } from 'react-simple-star-rating'
 
 const Review = () => {
   const [movieName, setMovieName] = useState('');
@@ -119,7 +116,7 @@ const Review = () => {
   }
 
   function handleStarChange(value) {
-    setStar(value);
+    setStar(value / 20);
   }
 
   function handleReviewChange(e) {
@@ -146,6 +143,9 @@ const Review = () => {
     } catch (err) {
       console.log(err.message);
     }
+    setAddReviewButton(false);
+    setReview('');
+    setStar(0);
   };
 
   let c = <Navbar />
@@ -164,8 +164,7 @@ const Review = () => {
         </div>
         <form className="reviewPage-searchbox">
             <input type="movename" placeholder="Search Movies" id="input-box" value={movieName} onChange={handleMovieChange}/>
-            <input type='submit' value='Search' id='submit-box' data-testid='search-movies-btn' onClick={handleSearchMovie}/>
-          </div>
+            <input type='submit' value='Search' id='submit-box' onClick={handleSearchMovie}/>
         </form>
         <div ref={ref} className="reviewPage-movieContent">
           {movies.map((val, key) =>{
@@ -188,10 +187,9 @@ const Review = () => {
               <div id='userInput'>
                 <textarea placeholder='Review' id = "inputs" type='text' value={review} onChange={handleReviewChange} ></textarea>
               </div>
-              <StarRatingInput className='inputstar'
-                size={5}
-                value={star}
-                onChange={handleStarChange} />
+              <div id='inputstar'>
+              <Rating size={40} onClick={handleStarChange}></Rating>
+              </div>
               <button type="submit" id="submitReviewButton" onClick={handleSubmitReview}>
                 SUBMIT
               </button>

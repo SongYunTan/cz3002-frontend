@@ -142,7 +142,7 @@ const Swipe = () => {
             <span id='reviewPart'>REVIEWS</span>
             <ul className='reviews'>
             
-            {reviews===false ? <p>There are no reviews currently.</p>:
+            {reviews===false ? <p id="SwipePage-noReview">There are no reviews currently.</p>:
               movie.review.map((val, key) =>{
                 return (
                 <li key={key} className='reviewRow'>
