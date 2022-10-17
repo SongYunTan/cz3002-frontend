@@ -91,7 +91,7 @@ const Review = () => {
         <form>
           <div className="searchbox">
             <input type="movename" placeholder="Search Movies" id="input-box" value={movieName} onChange={handleMovieChange}/>
-            <input type='submit' value='Search' id='submit-box' onClick={handleSearchMovie}/>
+            <input type='submit' value='Search' id='submit-box' data-testid='search-movies-btn' onClick={handleSearchMovie}/>
           </div>
         </form>
         <div className="movie-content">
