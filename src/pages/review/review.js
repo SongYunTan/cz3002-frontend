@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react'
 import Navbar from '../../components/Navbar';
-import './Review.css'
+import './review.css'
 import { Link } from 'react-router-dom';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import axios from 'axios';
