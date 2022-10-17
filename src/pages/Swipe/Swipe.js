@@ -58,27 +58,6 @@ const Swipe = () => {
     getData();
   }, []);
 
-
-  useEffect(()=>  {
-    getMovieReviews();
-  }, [movie]);
-
-  const getMovieReviews = async () => {
-    await axios.post(
-      'http://127.0.0.1:5000/get-reviews',
-      {movie_title: movie.title},
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-      },
-    ).catch((err) => {
-      console.log(err)
-    }).then((response)=> {
-      console.log(response)
-    });
-  };
   /*============================================================================= */
 
   /*=============================Indicating Interest===================================== */  
@@ -154,16 +133,16 @@ const Swipe = () => {
           <div className='reviewSection'>
             <span id='reviewPart'>REVIEWS</span>
             <ul className='reviews'>
-            {Reviewlist.map((val, key) =>{
+            {movie.review.map((val, key) =>{
                   return (
                   <li key={key} className='reviewRow'>
                   <div className='userInfo'>
                   <img id='profile' alt="profile" src={ 'images/profile.jpg' }/>
-                  <div id='username'>{val.username}</div>
+                  <div id='username'>{val[0]}</div>
                   </div>
                   <div className= 'userReview'>
-                  <Rating id='star' initialValue={val.star} allowHover={false} size={25}></Rating>
-                  <div id='review'>{val.review}</div>
+                  <Rating id='star' initialValue={val[2]} allowHover={false} size={25}></Rating>
+                  <div id='review'>{val[1]}</div>
                   </div>
                   </li>)
                 })

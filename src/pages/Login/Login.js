@@ -45,6 +45,7 @@ const Login = () => {
         console.log(JSON.stringify(response.data, null, 4));
         setIsLoading(false);
         sessionStorage.setItem("id", response.data["id"])
+        sessionStorage.setItem("username", username)
         sessionStorage.setItem("groupname", null)
         routeChange();
       });

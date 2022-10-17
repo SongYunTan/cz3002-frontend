@@ -17,7 +17,7 @@ const Review = () => {
   const [movies, setMovies] = useState([]);
   const [star, setStar] = useState(0);
   const [review, setReview] = useState('');
-  const [username] = useGlobalState("globalUsername"); 
+  const [username] = sessionStorage.getItem("username"); 
   const [addReviewButton, setAddReviewButton] = useState(false);
   const [movieChosen, setMovieChosen] = useState('');
 
