@@ -58,6 +58,14 @@ const Swipe = () => {
     getData();
   }, []);
 
+  useEffect(() => {
+    if (movie.review.length===0) {
+      setReviews(false);
+    } else {
+      setReviews(true);
+    }
+  }, [movie]);
+
   /*============================================================================= */
 
   /*=============================Indicating Interest===================================== */  
@@ -66,6 +74,8 @@ const Swipe = () => {
     "movie_id": "",
     "url" : ""
   }]);
+
+  const [reviews, setReviews] = useState(false)
   
   const handleInterestClick = async (e) => {
     let groupname = sessionStorage.getItem("groupname");
@@ -133,19 +143,21 @@ const Swipe = () => {
           <div className='reviewSection'>
             <span id='reviewPart'>REVIEWS</span>
             <ul className='reviews'>
-            {movie.review.map((val, key) =>{
-                  return (
-                  <li key={key} className='reviewRow'>
-                  <div className='userInfo'>
-                  <img id='profile' alt="profile" src={ 'images/profile.jpg' }/>
-                  <div id='username'>{val[0]}</div>
-                  </div>
-                  <div className= 'userReview'>
-                  <Rating id='star' initialValue={val[2]} allowHover={false} size={25}></Rating>
-                  <div id='review'>{val[1]}</div>
-                  </div>
-                  </li>)
-                })
+            
+            {reviews===false ? <p>There are no reviews currently.</p>:
+              movie.review.map((val, key) =>{
+                return (
+                <li key={key} className='reviewRow'>
+                <div className='userInfo'>
+                <img id='profile' alt="profile" src={ 'images/profile.jpg' }/>
+                <div id='username'>{val[0]}</div>
+                </div>
+                <div className= 'userReview'>
+                <Rating id='star' initialValue={val[2]} allowHover={false} size={25}></Rating>
+                <div id='review'>{val[1]}</div>
+                </div>
+                </li>)
+              })
             }
             </ul>
           </div>
