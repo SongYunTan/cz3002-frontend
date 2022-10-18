@@ -1,9 +1,10 @@
 import React from "react";
-import {render, screen, fireEvent, cleanup } from '@testing-library/react';
+import {render, screen, fireEvent, cleanup, waitFor } from '@testing-library/react';
 import { toBeInTheDocument } from '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event';
 import mockAxios from "axios";
 import {BrowserRouter} from 'react-router-dom';
+import { createMemoryHistory } from 'history';
 import SignUp from '../pages/SignUp/SignUp';
 
 const MockSignUp = () => {
@@ -122,7 +123,15 @@ describe("Sign up Page Component Testing", () =>{
             });
 
             test("Testing Register API call", async () => {
-                render(<MockSignUp />);
+                const history = createMemoryHistory({ initialEntries: ['/SignUp'] });
+                
+                render(
+                  <BrowserRouter location={history.location} navigator={history}>
+                    <SignUp />
+                  </BrowserRouter>
+                );
+
+                expect(history.location.pathname).toBe('/SignUp');
                 
 
                 const header = {
@@ -134,22 +143,31 @@ describe("Sign up Page Component Testing", () =>{
                 const pass1 = "hello";
                 const pass2 = "hello";
 
-                const inputElement1 = screen.getByPlaceholderText('Email');
-                const inputElement2 = screen.getByPlaceholderText('Username');
-                const inputElement3 = screen.getByPlaceholderText('Password');
-                const inputElement4 = screen.getByPlaceholderText('Confirm Password');
-                const buttonElement = screen.getByRole('button', {name:/SIGN UP/i});
-                
-                fireEvent.change(inputElement1, {target: {value: email}});
-                fireEvent.change(inputElement2, {target: {value: username}});
-                fireEvent.change(inputElement3, {target: {value: pass1}});
-                fireEvent.change(inputElement4, {target: {value: pass2}});
-                fireEvent.click(buttonElement);
+                mockAxios.post.mockResolvedValueOnce({
+                    data: {id: 1, username: 'admin'},
+                    status: 200 });
+
+                await waitFor (() => {
+                    const inputElement1 = screen.getByPlaceholderText('Email');
+                    const inputElement2 = screen.getByPlaceholderText('Username');
+                    const inputElement3 = screen.getByPlaceholderText('Password');
+                    const inputElement4 = screen.getByPlaceholderText('Confirm Password');
+                    const buttonElement = screen.getByRole('button', {name:/SIGN UP/i});
+                    
+                    fireEvent.change(inputElement1, {target: {value: email}});
+                    fireEvent.change(inputElement2, {target: {value: username}});
+                    fireEvent.change(inputElement3, {target: {value: pass1}});
+                    fireEvent.change(inputElement4, {target: {value: pass2}});
+                    fireEvent.click(buttonElement);
+                });
 
                 expect(mockAxios.post).toHaveBeenCalledWith('http://127.0.0.1:5000/register', 
                 {email: email,
                  password: pass1,
                  username:username}, {headers: header});
+
+                history.push("/Verify");
+                expect(history.location.pathname).toBe('/Verify');
             });
         });
     });

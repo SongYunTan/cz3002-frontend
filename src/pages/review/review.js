@@ -1,11 +1,12 @@
 import React, {useState, useEffect, useRef} from 'react'
 import Navbar from '../../components/Navbar';
-import './review.css'
+import './Review.css'
 import { Link } from 'react-router-dom';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import axios from 'axios';
 import Popup from '../../components/Popup';
 import { Rating } from 'react-simple-star-rating'
+import Neverlogin from '../Neverlogin/Neverlogin';
 
 const Review = () => {
   const [movieName, setMovieName] = useState('');
@@ -153,26 +154,27 @@ const Review = () => {
   { username: currentUser.username, email: currentUser.email, groups: currentUser.groups });
 
   return (
-    <div className='reviewPage'>
+    sessionStorage.getItem("id") !== null ?
+    (<div className='reviewPage'>
       { p }
       <div className="reviewPage-container">
         <div className='reviewPage-navbar'>
-          <Link to='/Home' className="review-backbtn">
+          <Link data-testid="review-back-button" to='/Home' className="review-backbtn">
             <KeyboardBackspaceIcon id='backicon'/>
           </Link>
           <div id='header'>Add Review</div>        
         </div>
         <form className="reviewPage-searchbox">
-            <input type="movename" placeholder="Search Movies" id="input-box" data-testid="search-bar" value={movieName} onChange={handleMovieChange}/>
-            <input type='submit' value='Search' id='submit-box' data-testid="search-movies-btn" onClick={handleSearchMovie}/>
+            <input data-testid="search-bar" type="movename" placeholder="Search Movies" id="input-box" value={movieName} onChange={handleMovieChange}/>
+            <input data-testid="search-movies-btn" type='submit' value='Search' id='submit-box' onClick={handleSearchMovie}/>
         </form>
         <div ref={ref} className="reviewPage-movieContent">
           {movies.map((val, key) =>{
               return (
-                <div key={key} className="movieItem" data-testid="movieItem">
+                <div data-testid="movieitem" key={key} className="movieItem">
                   <img className='matchesMoviePoster' alt='movie poster' src={val.url}></img>
                   <p id="title">{val.title}</p>
-                  <button className='addReviewBtn' data-testid="addReviewBtn"
+                  <button data-testid="movieitem-addReview" className='addReviewBtn'
                     onClick={() => handleAddReviewBtn(val.title)}>
                     Add Review
                   </button>
@@ -180,25 +182,26 @@ const Review = () => {
             })
           }
         </div>
-        <Popup trigger = {addReviewButton} setTrigger= {setAddReviewButton} data-testid="review-popup">
+      </div>
+      <Popup trigger = {addReviewButton} setTrigger= {setAddReviewButton}>
           <div className = "popup-addNewReview">
             <h3 id='title'>Add Review:</h3>
             <form className="addReviewPage-form">
               <div id='userInput'>
-                <textarea placeholder='Review' id = "inputs" type='text' value={review} onChange={handleReviewChange} ></textarea>
+                <textarea data-testid="popup-textarea" placeholder='Review' id = "inputs" type='text' value={review} onChange={handleReviewChange} ></textarea>
               </div>
               <div id='inputstar'>
-              <Rating size={40} onClick={handleStarChange} data-testid="star-rating"></Rating>
+              <Rating data-testid="popup-star" size={40} onClick={handleStarChange}></Rating>
               </div>
-              <button type="submit" id="submitReviewButton" data-testid="submitReviewButton" onClick={handleSubmitReview}>
+              <button data-testid="popup-submit" type="submit" id="submitReviewButton" onClick={handleSubmitReview}>
                 SUBMIT
               </button>
             </form>
           </div>
         </Popup>
-      </div>
-    </div>
+    </div>) : (<Neverlogin />)
+    
   );
-};
+}
 
 export default Review;
