@@ -18,8 +18,6 @@ const Verify = () => {
   const email = location.state.email;
   const password = location.state.password;
 
-  console.log(id);
-  
   function handleCodeChange(e) {
     const result = e.target.value.replace(/\D/g, '');
     setCode(result);

@@ -188,8 +188,8 @@ const Uprofile = () => {
                 <div className = "popupwindow">
                   <h3 id='title'>Enter New Username:</h3>
                   <form onSubmit={UsernameSubmit}>
-                    <input value={ Username } placeholder="New Username" onChange={e => setUserName(e.target.value)} type="text" id="inputbox"></input>
-                    <button value="Submit" className="profilePage-submitButton">
+                    <input data-testid="profile-username-input" value={ Username } placeholder="New Username" onChange={e => setUserName(e.target.value)} type="text" id="inputbox"></input>
+                    <button data-testid="profile-username-submit" value="Submit" className="profilePage-submitButton">
                       <CheckCircleIcon id='circleIcon'/>
                     </button>
                   </form>
@@ -199,8 +199,8 @@ const Uprofile = () => {
                 <div className = "popupwindow">
                   <h3 id='title'>Enter New Email:</h3>
                   <form onSubmit={EmailSubmit}>
-                  <input value={Email} placeholder="Email" onChange={e => setEmail(e.target.value)} type="text" id="inputbox"></input>
-                    <button value="Submit" className="profilePage-submitButton">
+                  <input data-testid="profile-email-input" value={Email} placeholder="Email" onChange={e => setEmail(e.target.value)} type="text" id="inputbox"></input>
+                    <button data-testid="profile-email-submit" value="Submit" className="profilePage-submitButton">
                       <CheckCircleIcon id='circleIcon'/>
                     </button>
                   </form>
@@ -210,8 +210,8 @@ const Uprofile = () => {
                 <div className = "popupwindow">
                   <h3 id='title'>Enter New Password:</h3>
                   <form onSubmit={PasswordSubmit}>
-                    <input placeholder="Password" onChange={e => setPassword(e.target.value)} type="text" id="inputbox"></input>
-                    <button value="Submit" className="profilePage-submitButton">
+                    <input data-testid="profile-password-input" placeholder="Password" onChange={e => setPassword(e.target.value)} type="text" id="inputbox"></input>
+                    <button data-testid="profile-password-submit" value="Submit" className="profilePage-submitButton">
                       <CheckCircleIcon id='circleIcon'/>
                     </button>
                   </form>

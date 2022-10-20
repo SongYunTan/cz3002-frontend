@@ -123,20 +123,25 @@ describe("Login Page Component Testing", () =>{
                 const username = "admin";
                 const pass = "hello";
 
-                const inputElement1 = screen.getByPlaceholderText('Username');
-                const inputElement2 = screen.getByPlaceholderText('Password');
-                const buttonElement = screen.getByRole('button', {name:/LOG IN/i});
+                mockAxios.post.mockResolvedValueOnce({
+                    data: {username: 'admin', password: 'hello'},
+                    status: 200 });
                 
-                fireEvent.change(inputElement1, {target: {value: username}});
-                fireEvent.change(inputElement2, {target: {value: pass}});
-                fireEvent.click(buttonElement);
+                await waitFor (() => {
+                    const inputElement1 = screen.getByPlaceholderText('Username');
+                    const inputElement2 = screen.getByPlaceholderText('Password');
+                    const buttonElement = screen.getByRole('button', {name:/LOG IN/i});
+                    
+                    fireEvent.change(inputElement1, {target: {value: username}});
+                    fireEvent.change(inputElement2, {target: {value: pass}});
+                    fireEvent.click(buttonElement);
+                });
 
                 expect(mockAxios.post).toHaveBeenCalledWith('http://127.0.0.1:5000/login', 
                 {username:username,
                  password: pass}, {headers: header});
 
-                history.push("/Home")
-        
+                history.push("/Home");
                 expect(history.location.pathname).toBe('/Home'); 
             });
         });
