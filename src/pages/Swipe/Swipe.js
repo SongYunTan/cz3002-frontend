@@ -63,7 +63,7 @@ const Swipe = () => {
     "title" :"",
     "movie_id": "",
     "url" : "",
-    "review" : [[],[]]
+    "review" : [[]]
   });
 
   const [reviews, setReviews] = useState(false)
@@ -132,20 +132,20 @@ const Swipe = () => {
       <div className='Swipe-Container'>
         <div className='Swipe-groupNavbar'><GroupNavbar /></div>
         <div className="SwipeContent">
-          <img id='moviePoster' alt='movie poster' src={movie.image_url}></img>
-          <div className='buttons'>
-            <input id="no" type="button" value="no" onClick={handleInterestClick}/>
-            <input id="yes" type="button" value="yes" onClick={handleInterestClick}/>
+          <img data-testid="movieposter" id='moviePoster' alt='movie poster' src={movie.image_url}></img>
+          <div data-testid="interestbuttons" className='buttons'>
+            <input data-testid="nobutton" id="no" type="button" value="no" onClick={handleInterestClick}/>
+            <input data-testid="yesbutton" id="yes" type="button" value="yes" onClick={handleInterestClick}/>
           </div>
           <a href="/" id='skip'>Skip</a>
           <div className='reviewSection'>
             <span id='reviewPart'>REVIEWS</span>
             <ul className='reviews'>
             
-            {reviews===false ? <p id="SwipePage-noReview">There are no reviews currently.</p>:
+            {reviews===false ? <p data-testid="noreviews" id="SwipePage-noReview">There are no reviews currently.</p>:
               movie.review.map((val, key) =>{
                 return (
-                <li key={key} className='reviewRow'>
+                <li data-testid="reviewitem" key={key} className='reviewRow'>
                 <div className='userInfo'>
                 <img id='profile' alt="profile" src={ 'images/profile.jpg' }/>
                 <div id='username'>{val[0]}</div>
