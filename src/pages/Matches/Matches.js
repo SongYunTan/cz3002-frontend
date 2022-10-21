@@ -15,11 +15,7 @@ const Matches = () => {
   "groups":[],
   });
 
-  const [matchedMovies, setMatchedMovies] = useState([{
-  "url":"",
-  "movie_id":"",
-  "title":""
-  }]);
+  const [matchedMovies, setMatchedMovies] = useState([]);
 
   /* =========================API Calls================================ */
   
@@ -80,7 +76,7 @@ const Matches = () => {
         <div className="groupMatches-content">
           {matchedMovies.map((val, key) =>{
               return (
-                <div key={key} className="movie">
+                <div data-testid="matchedmovieitem" key={key} className="movie">
                   <img className='matchesMoviePoster' alt='movie poster' src={val.url}></img>
                   <p>{val.title}</p>
                 </div>
